@@ -1,11 +1,11 @@
-# The Clojure Data Scrapbook project
+# The Clojure Data Tutorials project
 
 <img src="https://scicloj.github.io/sci-cloj-logo-transparent.png" alt="SciCloj logo" width="100" align="right"/>
 
-This project builds [The Clojure Data Scrapbook](https://scicloj.github.io/clojure-data-scrapbook/) that contains
-Community-contributed examples for the emerging Clojure data stack.
+This project builds [The Clojure Data Tutorials](https://scicloj.github.io/clojure-data-tutorials/) that contains
+Community-contributed tutorials for the emerging Clojure data stack.
 
-You can interact with the examples by cloning this project and starting a REPL.
+You can interact with the tutorials by cloning this project and starting a REPL.
 
 This project is part of the [SciCloj community](https://scicloj.github.io/docs/community/about/).
 
