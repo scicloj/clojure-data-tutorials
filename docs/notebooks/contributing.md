@@ -1,4 +1,4 @@
-# Contributing
+# Contributing - to be revised
 
 There are two ways to contribute to the scrapbook. Both are encouraged, depending on your convenience.
 

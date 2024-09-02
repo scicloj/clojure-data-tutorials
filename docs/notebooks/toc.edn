@@ -1,23 +1,26 @@
-[{:created "2023-12-16"
-  :title "data processing"
-  :url "projects/data-processing/index.html"
-  :source-path "projects/data-processing"
-  :tags []}
-;;  {:created "2023-12-16"
-;;   :title "noj"
-;;   :url "projects/noj/index.html"
-;;   :source-path "projects/noj"
-;;   :tags []}
- {:created "2023-12-16"
-  :title "datavis with python/seaborn"
-  :url "projects/datavis/python/plotting/index.html"
-  :source-path "projects/datavis/python/plotting"
-  :tags []}
- {:created "2023-12-16"
- :title "datavis with ggplot"
+[
+  
+
+{ :created "2024-01-11"
+  :title "Machine learning - DRAFT"
+  :url "projects/noj/ml.html"
+  :source-path "projects/noj/notebooks/ml.clj"
+  :tags [:noj :ml :scicloj.ml :draft]}
+
+ {
+ :created "2024-02-06"
+ :updated "2024-03-19"
+ :title "Exploring ggplot" 
  :url "projects/datavis/ggplot/index.html"
  :source-path "projects/datavis/ggplot"
- :tags []}
- 
-
+ :tags [:noj :r :clojisr :interop :ggplot :datavis]
+  }
+ {
+ :created "2024-07-24"
+  :updated "2024-07-28"
+  :title "Displaying Python Plots in Clojure"
+  :url "projects/datavis/python/plotting/index.html"
+  :source-path "projects/datavis/python/plotting/"
+  :tags [:datavis :python]
+}
  ]
