@@ -20,7 +20,8 @@ jobs:
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/noj
-               push: never
+               imageName: ghcr.io/clojure-data-scrap/noj-devcontainer
+               cacheFrom: ghcr.io/clojure-data-scrap/noj-devcontainer
                runCmd: clj notebooks/render.clj
 
     # - name: render tutorial in projects/data-processing
