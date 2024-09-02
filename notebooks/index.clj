@@ -16,7 +16,10 @@
 ;; The Clojure Data Tutorials are a collection of
 ;; community-contributed tutorials for the emerging Clojure data stack.
 ;;
-;; You can interact with the tutorials by cloning this project and starting a REPL.
+;; All tutorials are isolated from each other and have their own deps.edn and devcontainer configuration.
+;; This guranties long term sucessfull builds and repdocucibility as the full setup is scripted.
+;;
+;; You can interact with the tutorials by cloning this project and starting a REPL in a devcontainer.
 ;;
 ;; This project is part of the [SciCloj community](https://scicloj.github.io/docs/community/about/).
 
