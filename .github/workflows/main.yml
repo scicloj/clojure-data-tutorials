@@ -22,6 +22,7 @@ jobs:
                subFolder: projects/noj
                imageName: ghcr.io/clojure-data-scrap/noj-devcontainer
                cacheFrom: ghcr.io/clojure-data-scrap/noj-devcontainer
+               push: always
                runCmd: clj notebooks/render.clj
 
     # - name: render tutorial in projects/data-processing
@@ -35,15 +36,21 @@ jobs:
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/datavis/python/plotting
-               push: never
                runCmd: clj -Adev notebooks/render.clj
+               imageName: ghcr.io/clojure-data-scrap/python/plotting/devcontainer
+               cacheFrom: ghcr.io/clojure-data-scrap/python/plotting/devcontainer
+               push: always
+
                
     - name: render tutorial in projects/datavis/ggplot
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/datavis/ggplot
-               push: never
+               push: always
                runCmd: clj -Adev notebooks/render.clj
+               imageName: ghcr.io/clojure-data-scrap/datavis/ggplot/devcontainer
+               cacheFrom: ghcr.io/clojure-data-scrap/datavis/ggplot/devcontainer
+
 
 
     - name: clean docs
