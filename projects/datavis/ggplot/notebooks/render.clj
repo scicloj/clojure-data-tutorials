@@ -1,4 +1,4 @@
-(ns dev
+(ns render
   (:require [scicloj.clay.v2.api :as clay]))
 
 (clay/make! {:format [:quarto :html]
@@ -17,3 +17,4 @@
              :base-target-path "docs"
              :book {:title "Exploring ggplot"}
              :clean-up-target-dir true})
+(System/exit 0)
