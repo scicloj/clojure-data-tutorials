@@ -11,7 +11,7 @@ This project is part of the [SciCloj community](https://scicloj.github.io/docs/c
 
 ## Discussion
 
-You are encouraged to discuss your suggestoins, criticism, and questions with us. You may use the repo's [Issues](https://github.com/scicloj/clojure-data-scrapbook/issues) or the usual Scicloj ways of [contact](https://scicloj.github.io/docs/community/contact/).
+You are encouraged to discuss your suggestoins, criticism, and questions with us. You may use the repo's [Issues](https://github.com/scicloj/clojure-data-tutorials/issues) or the usual Scicloj ways of [contact](https://scicloj.github.io/docs/community/contact/).
 
 ## Contributing
 
