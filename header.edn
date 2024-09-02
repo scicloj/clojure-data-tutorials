@@ -3,11 +3,11 @@
 [:table
  [:tr
   [:td "This is part of the Scicloj "
-   [:a {:href "https://scicloj.github.io/clojure-data-scrapbook/"}
+   [:a {:href "https://scicloj.github.io/clojure-data-tutorials/"}
     "Clojure Data Scrapbook"]
    "."]
   [:a
-   {:href "https://scicloj.github.io/clojure-data-scrapbook/"}
+   {:href "https://scicloj.github.io/clojure-data-tutorials/"}
    [:img {:src "https://scicloj.github.io/sci-cloj-logo-transparent.png"
           :alt "SciCloj logo"
           :width "40"
