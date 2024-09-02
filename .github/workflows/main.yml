@@ -20,7 +20,6 @@ jobs:
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/noj
-               push: always
                runCmd: clj notebooks/render.clj
 
     # - name: render tutorial in projects/data-processing
@@ -35,14 +34,12 @@ jobs:
       with:    
                subFolder: projects/datavis/python/plotting
                runCmd: clj -Adev notebooks/render.clj
-               push: always
 
                
     - name: render tutorial in projects/datavis/ggplot
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/datavis/ggplot
-               push: always
                runCmd: clj -Adev notebooks/render.clj
 
     - name: clean docs
