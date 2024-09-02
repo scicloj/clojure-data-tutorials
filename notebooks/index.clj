@@ -13,10 +13,10 @@
     kind/hiccup
     kindly/hide-code)
 
-;; The Clojure Data Scrapbook is a collection of
-;; community-contributed examples for the emerging Clojure data stack.
+;; The Clojure Data Tutorials are a collection of
+;; community-contributed tutorials for the emerging Clojure data stack.
 ;;
-;; You can interact with the examples by cloning this project and starting a REPL.
+;; You can interact with the tutorials by cloning this project and starting a REPL.
 ;;
 ;; This project is part of the [SciCloj community](https://scicloj.github.io/docs/community/about/).
 
@@ -47,7 +47,7 @@
                                                            :background-color "#fdf6e3"}
                                                    :href (if (re-matches #"http.*" source-path)
                                                            source-path
-                                                           (str "https://github.com/scicloj/clojure-data-scrapbook/tree/main/"
+                                                           (str "https://github.com/scicloj/clojure-data-tutorials/tree/main/"
                                                                 source-path))}
                                                "(source)"]]
                                           (when draft [:p "(draft)"])]])
