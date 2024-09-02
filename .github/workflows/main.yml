@@ -20,8 +20,8 @@ jobs:
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/noj
-               imageName: ghcr.io/clojure-data-scrap/noj-devcontainer
-               cacheFrom: ghcr.io/clojure-data-scrap/noj-devcontainer
+               imageName: ghcr.io/behrica/clojure-data-scrap/noj-devcontainer
+               cacheFrom: ghcr.io/behrica/clojure-data-scrap/noj-devcontainer
                push: always
                runCmd: clj notebooks/render.clj
 
@@ -37,8 +37,8 @@ jobs:
       with:    
                subFolder: projects/datavis/python/plotting
                runCmd: clj -Adev notebooks/render.clj
-               imageName: ghcr.io/clojure-data-scrap/python/plotting/devcontainer
-               cacheFrom: ghcr.io/clojure-data-scrap/python/plotting/devcontainer
+               imageName: ghcr.io/behrica/clojure-data-scrap/python/plotting/devcontainer
+               cacheFrom: ghcr.io/behrica/clojure-data-scrap/python/plotting/devcontainer
                push: always
 
                
@@ -48,8 +48,8 @@ jobs:
                subFolder: projects/datavis/ggplot
                push: always
                runCmd: clj -Adev notebooks/render.clj
-               imageName: ghcr.io/clojure-data-scrap/datavis/ggplot/devcontainer
-               cacheFrom: ghcr.io/clojure-data-scrap/datavis/ggplot/devcontainer
+               imageName: ghcr.io/behrica/clojure-data-scrap/datavis/ggplot/devcontainer
+               cacheFrom: ghcr.io/behrica/clojure-data-scrap/datavis/ggplot/devcontainer
 
 
 
