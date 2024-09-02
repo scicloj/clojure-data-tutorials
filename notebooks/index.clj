@@ -1,5 +1,5 @@
 ^{:kindly/hide-code true
-  :clay {:quarto {:title "Clojure Data Scrapbook"}}}
+  :clay {:quarto {:title "Clojure Data Tutorials"}}}
 
 (ns index
   (:require [clojure.string :as str]
