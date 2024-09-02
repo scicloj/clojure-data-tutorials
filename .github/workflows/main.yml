@@ -22,13 +22,6 @@ jobs:
                subFolder: projects/noj
                runCmd: clj notebooks/render.clj
 
-    # - name: render tutorial in projects/data-processing
-    #   uses: devcontainers/ci@v0.3
-    #   with:    
-    #            subFolder: projects/data-processing
-    #            push: never
-    #            runCmd: clj notebooks/render.clj
-
     - name: render tutorial in projects/datavis/python/plotting
       uses: devcontainers/ci@v0.3
       with:    
