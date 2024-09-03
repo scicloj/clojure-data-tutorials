@@ -25,7 +25,7 @@
  {
  :created "2024-09-02"
  :updated "2024-09-02"
- :title "Using ONNX ML models Clojure"
+ :title "Using ONNX ML models from Clojure"
  :url "projects/ml/onnx/index.html"
  :source-path "projects/ml/onnx"
  :tags [:onnx :ml]}

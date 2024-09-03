@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>onnx – Using ONNX models from clojure</title>
+<title>2&nbsp; Using ONNX models from Clojure – Using ONNX models from clojure</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./onnx.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">onnx.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./onnx.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Using ONNX models from Clojure</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./onnx.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">onnx.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Using ONNX models from Clojure</span></span></a>
   </div>
 </li>
     </ul>
@@ -157,13 +157,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#load-and-inspect-onnx-file" id="toc-load-and-inspect-onnx-file" class="nav-link active" data-scroll-target="#load-and-inspect-onnx-file"><span class="header-section-number">2.1</span> Load and inspect ONNX file</a></li>
+  <li><a href="#run-inference-on-arrays" id="toc-run-inference-on-arrays" class="nav-link" data-scroll-target="#run-inference-on-arrays"><span class="header-section-number">2.2</span> Run inference on arrays</a></li>
+  <li><a href="#run-inference-on-tech.dataset" id="toc-run-inference-on-tech.dataset" class="nav-link" data-scroll-target="#run-inference-on-tech.dataset"><span class="header-section-number">2.3</span> Run inference on tech.dataset</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Using ONNX models from Clojure</span></h1>
+</div>
 
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <style></style>
@@ -182,7 +206,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            OnnxTensor]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We assume that we get an ONNX file from somewhere and want to use it from Clojure. ONNX files can for example be trained with Python sklearn and exported to ONNX format. There are as well model zoos existing, which allow to download pre-trained models.</p>
-<p>We can open such file using the JAVA ONNX run-time with has the maven coordinates com.microsoft.onnxruntime/onnxruntime {:mvn/version “1.19.0”} We use here a model which was trained on the well know iris data and can predict the species</p>
+<p>We can open such file using the JAVA ONNX run-time with has the maven coordinates com.microsoft.onnxruntime/onnxruntime {:mvn/version “1.19.0”}</p>
+<section id="load-and-inspect-onnx-file" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="load-and-inspect-onnx-file"><span class="header-section-number">2.1</span> Load and inspect ONNX file</h2>
+<p>We use here a model which was trained on the well know iris data and can predict the species</p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb2"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> env </span>(OrtEnvironment/getEnvironment))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -220,6 +247,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> {<span class="at">:info</span> {<span class="at">:sequenceOfMaps</span> <span class="va">true</span>}, <span class="at">:name</span> <span class="st">"output_probability"</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This outputs one value for each row of the input, which matches as well the iris data. Now we need to construct an instance of ai.onnxruntime.OnnxTensor of shape [-1,4] This can be done starting from a vector-of-vector, for example</p>
+</section>
+<section id="run-inference-on-arrays" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="run-inference-on-arrays"><span class="header-section-number">2.2</span> Run inference on arrays</h2>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb8"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> input-data</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  [[<span class="dv">7</span>   <span class="fl">0.5</span>  <span class="fl">0.5</span> <span class="fl">0.5</span>]</span>
@@ -234,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb10"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tensor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb11"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>#object[ai.onnxruntime.OnnxTensor <span class="bn">0x54c976be</span> <span class="st">"OnnxTensor(info=TensorInfo(javaType=FLOAT,onnxType=ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT,shape=[2, 4]),closed=false)"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>#object[ai.onnxruntime.OnnxTensor <span class="bn">0x185e0148</span> <span class="st">"OnnxTensor(info=TensorInfo(javaType=FLOAT,onnxType=ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT,shape=[2, 4]),closed=false)"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb12"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> prediction </span>(.run session {<span class="st">"float_input"</span> tensor}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -243,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb13"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>prediction</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb14"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>#object[ai.onnxruntime.OrtSession$Result <span class="bn">0x5b61e35b</span> <span class="st">"ai.onnxruntime.OrtSession$Result@5b61e35b"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>#object[ai.onnxruntime.OrtSession$Result <span class="bn">0x54c976be</span> <span class="st">"ai.onnxruntime.OrtSession$Result@54c976be"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We have two things in prediction result:</p>
 <div class="sourceClojure">
@@ -269,7 +299,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb20"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>({<span class="dv">0</span> <span class="fl">0.6436056</span>, <span class="dv">1</span> <span class="fl">0.35639435</span>, <span class="dv">2</span> <span class="fl">8.642593E-8</span>}</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a> {<span class="dv">0</span> <span class="fl">0.99678445</span>, <span class="dv">1</span> <span class="fl">0.0032155933</span>, <span class="dv">2</span> <span class="fl">4.3943203E-8</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In case we ave our data to be used in a tech.ml.dataset</p>
+</section>
+<section id="run-inference-on-tech.dataset" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="run-inference-on-tech.dataset"><span class="header-section-number">2.3</span> Run inference on tech.dataset</h2>
+<p>In case we have our data in a tech.ml.dataset</p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb21"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> ds</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  (tc/dataset [[<span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span>]</span>
@@ -285,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>      env </span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">into-array</span> (<span class="kw">map</span> <span class="kw">float-array</span> (tc/rows ds)))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Running predictions is then te same.</p>
+<p>Running predictions is then the same.</p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb23"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> prediction-2 </span>(.run session {<span class="st">"float_input"</span> tensor<span class="dv">-2</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -295,11 +328,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="printedClojure">
 <div class="sourceCode" id="cb25"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Overall we an use any ONNX model from Clojure. This allows polyglot scenarios where data preprocession and model evaluation is done in Clojure, while training is done in Python which its huge ecosystem of models.</p>
+<p>Overall we can use any ONNX model from Clojure. This allows polyglot scenarios where data preprocession and model evaluation is done in Clojure, while training is done in Python with its huge ecosystem of ML models.</p>
+<p>Hoefuly overtime the ONNX standard will see widespread use. Most sklearn models/pipelines can be exported to ONNX using <a href="https://onnx.ai/sklearn-onnx/">sklear-onnx</a></p>
 <div style="background-color:grey;height:2px;width:100%;"></div>
 <div><pre><small><small>source: <a href="https://github.com/scicloj/clojure-data-tutorials/blob/main/projects/ml/onnx/notebooks/onnx.clj">projects/ml/onnx/notebooks/onnx.clj</a></small></small></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
