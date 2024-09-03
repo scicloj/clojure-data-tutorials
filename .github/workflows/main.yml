@@ -1,4 +1,4 @@
-name: Clojure CI
+name: Build tutorials page
 
 on:
   push:
@@ -16,17 +16,21 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
+    
     - name: render tutorial in projects/noj
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/noj
                runCmd: clj notebooks/render.clj
+               push: never
+
 
     - name: render tutorial in projects/datavis/python/plotting
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/datavis/python/plotting
                runCmd: clj -Adev notebooks/render.clj
+               push: never
 
                
     - name: render tutorial in projects/datavis/ggplot
@@ -34,13 +38,17 @@ jobs:
       with:    
                subFolder: projects/datavis/ggplot
                runCmd: clj -Adev notebooks/render.clj
+               push: never
+
 
     - name: render tutorial in projects/ml/onnx
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/ml/onnx
                runCmd: clj notebooks/render.clj
+               push: never
 
+    
     - name: clean docs
       run: |
          rm -rf docs/*.*
@@ -60,18 +68,11 @@ jobs:
     - name: Install clojure tools
       uses: DeLaGuardo/setup-clojure@12.5
       with:
-          # Install just one or all simultaneously
-          # The value must indicate a particular version of the tool, or use 'latest'
-          # to always provision the latest version
           cli: 1.10.1.693 
-
 
     - name: fix permisions
       run: sudo chmod o+w docs/
 
-    - name: check permisison
-      run: |
-         ls -la docs/
       
     - name: create main index
       run: clojure notebooks/render_index.clj 
