@@ -4,7 +4,7 @@
  [:tr
   [:td "This is part of the Scicloj "
    [:a {:href "https://scicloj.github.io/clojure-data-tutorials/"}
-    "Clojure Data Scrapbook"]
+    "Clojure Data Tutorials"]
    "."]
   [:a
    {:href "https://scicloj.github.io/clojure-data-tutorials/"}
