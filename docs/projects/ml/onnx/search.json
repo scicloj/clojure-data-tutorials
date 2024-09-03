@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Using ONNX models from clojure",
     "section": "",
-    "text": "This is part of the Scicloj Clojure Data Scrapbook.\n\n1 Preface\nONNX is an upcoming exchange format for machine learning models. It is platform indepedent and allows, for example, to train models in python, export the trained model into a file, and then use it in Java / Clojure for inference\n\nsource: projects/ml/onnx/notebooks/index.clj",
+    "text": "This is part of the Scicloj Clojure Data Tutorials.\n\n1 Preface\nONNX is an upcoming exchange format for machine learning models. It is platform indepedent and allows, for example, to train models in python, export the trained model into a file, and then use it in Java / Clojure for inference\n\nsource: projects/ml/onnx/notebooks/index.clj",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
@@ -34,7 +34,7 @@
     "href": "onnx.html#run-inference-on-arrays",
     "title": "2  Using ONNX models from Clojure",
     "section": "2.2 Run inference on arrays",
-    "text": "2.2 Run inference on arrays\n\n(def input-data\n  [[7   0.5  0.5 0.5]\n   [0.5 1    1     1]])\n\n\n(def tensor (OnnxTensor/createTensor\n             env\n             (into-array (map float-array input-data))))\n\n\ntensor\n\n\n#object[ai.onnxruntime.OnnxTensor 0x185e0148 \"OnnxTensor(info=TensorInfo(javaType=FLOAT,onnxType=ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT,shape=[2, 4]),closed=false)\"]\n\n\n(def prediction (.run session {\"float_input\" tensor}))\n\n\nprediction\n\n\n#object[ai.onnxruntime.OrtSession$Result 0x54c976be \"ai.onnxruntime.OrtSession$Result@54c976be\"]\n\nWe have two things in prediction result:\n\n(map key prediction)\n\n\n(\"output_label\" \"output_probability\")\n\nnamely predicted labels and probabilities We need a bit of inter-op to get the numbers out of the prediction predicted species:\n\n(-&gt;  prediction first val .getValue)\n\n\n[0, 0]\n\nprobability distribution for each species for all labels:\n\n(map\n #(.getValue %)\n (-&gt;  prediction second val .getValue))\n\n\n({0 0.6436056, 1 0.35639435, 2 8.642593E-8}\n {0 0.99678445, 1 0.0032155933, 2 4.3943203E-8})",
+    "text": "2.2 Run inference on arrays\n\n(def input-data\n  [[7   0.5  0.5 0.5]\n   [0.5 1    1     1]])\n\n\n(def tensor (OnnxTensor/createTensor\n             env\n             (into-array (map float-array input-data))))\n\n\ntensor\n\n\n#object[ai.onnxruntime.OnnxTensor 0x52bdd6cb \"OnnxTensor(info=TensorInfo(javaType=FLOAT,onnxType=ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT,shape=[2, 4]),closed=false)\"]\n\n\n(def prediction (.run session {\"float_input\" tensor}))\n\n\nprediction\n\n\n#object[ai.onnxruntime.OrtSession$Result 0x59eab922 \"ai.onnxruntime.OrtSession$Result@59eab922\"]\n\nWe have two things in prediction result:\n\n(map key prediction)\n\n\n(\"output_label\" \"output_probability\")\n\nnamely predicted labels and probabilities We need a bit of inter-op to get the numbers out of the prediction predicted species:\n\n(-&gt;  prediction first val .getValue)\n\n\n[0, 0]\n\nprobability distribution for each species for all labels:\n\n(map\n #(.getValue %)\n (-&gt;  prediction second val .getValue))\n\n\n({0 0.6436056, 1 0.35639435, 2 8.642593E-8}\n {0 0.99678445, 1 0.0032155933, 2 4.3943203E-8})",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Using ONNX models from Clojure</span>"
     ]
