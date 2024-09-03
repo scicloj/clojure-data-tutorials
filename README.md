@@ -2,10 +2,13 @@
 
 <img src="https://scicloj.github.io/sci-cloj-logo-transparent.png" alt="SciCloj logo" width="100" align="right"/>
 
-This project builds [The Clojure Data Tutorials](https://scicloj.github.io/clojure-data-tutorials/) that contains
+This project builds [The Clojure Data Tutorials page](https://scicloj.github.io/clojure-data-tutorials/) that contains
 Community-contributed tutorials for the emerging Clojure data stack.
 
-You can interact with the tutorials by cloning this project and starting a REPL.
+You can interact with the tutorials by cloning this project and starting a REPL in the relevant subfolders.
+All tutorials have a mandatory devcontainer configuration. This allows to isolate the "native dependencies",
+which are very common in Clojure Data Science approaches, from each other.
+It makes as well sure, that all tutorials are easy reproducible. (using devcontainer tools)
 
 This project is part of the [SciCloj community](https://scicloj.github.io/docs/community/about/).
 
