@@ -1,7 +1,7 @@
 (ns onnx
   (:require [tablecloth.api :as tc]
             [clojure.java.data :as j])
-  (:import [ai.onnxruntime OrtEnvironment OrtSession$SessionOptions
+  (:import [ai.onnxruntime OrtEnvironment 
             OnnxTensor]))
 
 ;; # Using ONNX models from Clojure
