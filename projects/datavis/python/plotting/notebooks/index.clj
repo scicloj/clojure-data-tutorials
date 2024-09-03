@@ -1,5 +1,4 @@
-(load-file "../../../../header.edn")
-
+(load-string (slurp  "https://raw.githubusercontent.com/scicloj/clojure-data-tutorials/main/header.edn"))
 ;; ---------------
 
 ;; This notebook demonstrates a self-contained workflow for visualizing Python plots in current Clojure tooling using the [Kindly](https://scicloj.github.io/kindly/) convention.

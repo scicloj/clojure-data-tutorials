@@ -1,5 +1,4 @@
-(load-file "../../../header.edn")
-
+(load-string (slurp  "https://raw.githubusercontent.com/scicloj/clojure-data-tutorials/main/header.edn"))
 (ns ggplotly
   (:require [scicloj.kindly.v4.kind :as kind]
             [charred.api :as charred]

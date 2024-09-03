@@ -1,5 +1,4 @@
-(load-file "../../../header.edn")
-
+(load-string (slurp  "https://raw.githubusercontent.com/scicloj/clojure-data-tutorials/main/header.edn"))
 ;; # Using ggplot in Clojure with ClojisR
 
 ;; ## Setup

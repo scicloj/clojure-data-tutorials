@@ -1,5 +1,4 @@
-(load-file "../../../header.edn")
-
+(load-string (slurp  "https://raw.githubusercontent.com/scicloj/clojure-data-tutorials/main/header.edn"))
 ;; # Comparing the data representations of ggplot plots
 
 (ns comparing

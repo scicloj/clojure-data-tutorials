@@ -1,5 +1,4 @@
-(load-file "../../../header.edn")
-
+(load-string (slurp  "https://raw.githubusercontent.com/scicloj/clojure-data-tutorials/main/header.edn"))
 (ns study-session-20240225
   (:require [clojisr.v1.r :as r :refer [r]]
             [clojisr.v1.applications.plotting :as plotting]
