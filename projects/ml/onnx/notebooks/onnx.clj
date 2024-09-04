@@ -97,5 +97,5 @@ prediction
 ;; This allows polyglot scenarios where data preprocession and model evaluation
 ;; is done in Clojure, while training is done in Python with its huge ecosystem of ML models.
 ;;
-;; Hoefuly overtime the ONNX standard will see widespread use. Most sklearn models/pipelines can be exported 
-;; to ONNX using [sklear-onnx](https://onnx.ai/sklearn-onnx/)
+;; Hopefuly over time the ONNX standard will see widespread use. Most sklearn models/pipelines can be exported 
+;; to ONNX using [sklearn-onnx](https://onnx.ai/sklearn-onnx/)
