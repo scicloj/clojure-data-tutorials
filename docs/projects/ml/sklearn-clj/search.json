@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Use sklearn-clj",
+    "section": "",
+    "text": "1 Introduction",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#define-metamorph-pipeline",
+    "href": "index.html#define-metamorph-pipeline",
+    "title": "Use sklearn-clj",
+    "section": "3.1 Define metamorph pipeline",
+    "text": "3.1 Define metamorph pipeline\n\n(def pipe-fn\n  (mm/pipeline\n   {:metamorph/id :model}\n   (ml/model {:model-type :sklearn.classification/logistic-regression\n              :max-iter 1000})))",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#train-model",
+    "href": "index.html#train-model",
+    "title": "Use sklearn-clj",
+    "section": "3.2 Train model",
+    "text": "3.2 Train model\n\n(def trained-ctx (mm/fit-pipe iris pipe-fn))",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#inspect-model-trained-model",
+    "href": "index.html#inspect-model-trained-model",
+    "title": "Use sklearn-clj",
+    "section": "3.3 Inspect model trained model",
+    "text": "3.3 Inspect model trained model\n\n(def model-object\n  (-&gt; trained-ctx :model :model-data :model))\n\nIts a libpython-clj reference to a python object\n\nmodel-object\n\n\nLogisticRegression(max_iter=1000)\n\nWe can get its coeffiecints, for example\n\n(class\n (py/-&gt;jvm\n  (py.- model-object coef_)))\n\n\ntech.v3.tensor_api.DirectTensor\n\n\nsource: projects/ml/sklearn-clj/notebooks/index.clj",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  }
+]
