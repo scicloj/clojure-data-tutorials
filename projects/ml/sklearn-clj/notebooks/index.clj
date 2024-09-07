@@ -26,8 +26,6 @@
 ;; # Use iris data
 ;; Lets first get our data, the well kownn iris dataset
 (def iris
-  
-
   (-> (toydata/iris-ds)
       (ds-mod/set-inference-target :species)
       (ds/categorical->number [:species])))
