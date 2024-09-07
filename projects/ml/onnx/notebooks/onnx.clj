@@ -81,7 +81,7 @@ prediction
                [3   1   2   1]
                [7   8   2   10]]))
 
-
+ds
 ;; we can convert it to a OnnxTensor as well easily
 
 (def tensor-2 
