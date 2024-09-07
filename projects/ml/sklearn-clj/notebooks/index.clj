@@ -1,4 +1,4 @@
-(ns sklearn 
+(ns index 
   (:require [scicloj.metamorph.ml.toydata :as toydata]
             [scicloj.metamorph.core :as mm]))
 
@@ -31,9 +31,9 @@
 
 (def model-object
   (-> trained-ctx :model :model-data :model))
+model-object
 
-(println :model-object model-object)
-(println :coeff
-         (py.- model-object coef_))
+(py.- model-object coef_)
+         
 
 
