@@ -30,4 +30,11 @@
  :source-path "projects/ml/onnx"
  :tags [:onnx :ml]}
 
+  {:created "2024-09-07"
+  :updated "2024-09-07"
+  :title "Using sklearn models from Clojure with sklearn-clj"
+  :url "projects/ml/sklearn-clj/index.html"
+  :source-path "projects/ml/sklearn-clj"
+  :tags [:onnx :ml]}
+
  ]

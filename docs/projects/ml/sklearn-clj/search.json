@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Use sklearn-clj",
+    "section": "",
+    "text": "1 Introduction\nsklearn-clj is a Clojure librray which allows to use all sklearn estimators (models and others) from Clojure It use libpython-clj behind the scenes but we do not need to use the libpython-clj API. All models are available via the standart Clojure functions in metamorph.ml",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#define-metamorph-pipeline",
+    "href": "index.html#define-metamorph-pipeline",
+    "title": "Use sklearn-clj",
+    "section": "4.1 Define metamorph pipeline",
+    "text": "4.1 Define metamorph pipeline\nAll models are available by specifying keys in form of :sklearn.xxx.yyy for the model type. The available models are listed here (The list is a bit old, from sklearn 1.0.0)\nWe define a normal metamorph.ml pipeline, as we would to with Clojure models.\n\n(def pipe-fn\n  (mm/pipeline\n   {:metamorph/id :model}\n   (ml/model {:model-type :sklearn.classification/logistic-regression\n              :max-iter 1000})))",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#train-model",
+    "href": "index.html#train-model",
+    "title": "Use sklearn-clj",
+    "section": "4.2 Train model",
+    "text": "4.2 Train model\nWe can train the model using a tech.ml.dataset as training data. sklearn-clj will transform the data behind the scenes to numpy arrays, which the sklearn models expect.\n\n(def trained-ctx (mm/fit-pipe iris pipe-fn))",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#inspect-trained-model",
+    "href": "index.html#inspect-trained-model",
+    "title": "Use sklearn-clj",
+    "section": "4.3 Inspect trained model",
+    "text": "4.3 Inspect trained model\nWe can inspect the model object:\n\n(def model-object\n  (-&gt; trained-ctx :model :model-data :model))\n\nIt’s a libpython-clj reference to a python object\n\nmodel-object\n\n\nLogisticRegression(max_iter=1000)\n\nand use libpython-clj functions to get information out of it. We can get the models coefficients, for example:\n\n(py/-&gt;jvm\n  (py.- model-object coef_))\n\n\n#tech.v3.tensor&lt;float64&gt;[3 4]\n[[-0.4246  0.9666  -2.516  -1.082]\n [ 0.5354 -0.3207 -0.2074 -0.9426]\n [-0.1108 -0.6459   2.723   2.025]]\n\nwe can as well ask for predict on new data\n\n(def simulated-new-data \n  (tc/head (tc/shuffle iris) 10) )\n\n\n(def prediction\n  (-&gt;\n   (:metamorph/data\n    (mm/transform-pipe \n     simulated-new-data  \n     pipe-fn \n     trained-ctx))\n   ds-cat/reverse-map-categorical-xforms))\n\nWe get a tech.ml.dataset with the prediction result back. sklearn-clj aut-transform the prediction result back to a tech.ml.dataset\n\nprediction\n\n\n:_unnamed [10 4]:\n\n\n\n0\n1\n2\n:species\n\n\n\n\n0.01024942\n0.75078545\n2.38965124E-01\n1\n\n\n0.96002286\n0.03997691\n2.23552543E-07\n0\n\n\n0.98676691\n0.01323307\n1.99920505E-08\n0\n\n\n0.00237587\n0.81527699\n1.82347142E-01\n1\n\n\n0.00304552\n0.85988459\n1.37069888E-01\n1\n\n\n0.00000062\n0.02135875\n9.78640624E-01\n2\n\n\n0.07441596\n0.91513279\n1.04512580E-02\n1\n\n\n0.99187865\n0.00812135\n3.89019773E-09\n0\n\n\n0.95598656\n0.04401337\n6.90802511E-08\n0\n\n\n0.00000106\n0.02921944\n9.70779497E-01\n2\n\n\n\n\n\nsource: projects/ml/sklearn-clj/notebooks/index.clj",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  }
+]
