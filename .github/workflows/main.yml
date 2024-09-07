@@ -52,7 +52,7 @@ jobs:
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/ml/sklearn-clj
-               runCmd: clj notebooks/sklearn.clj
+               runCmd: clj render.clj
                push: never
 
     
