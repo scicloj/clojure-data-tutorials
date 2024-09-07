@@ -16,8 +16,9 @@ jobs:
         uses: tj-actions/changed-files@v45
         with:
           dir_names: "true"
+          
       - name: print changed
-      - run: echo "${{detect-changes.outputs}}"   
+        run: echo "${{detect-changes.outputs}}"   
 
   render-tutorials:
 
