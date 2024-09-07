@@ -7,20 +7,20 @@
 ;; # Using ONNX models from Clojure
 ;;
 ;; We assume that we get an ONNX file from somewhere and want to use it from Clojure.
-;; ONNX files can for example be trained with Python sklearn and exported to ONNX format.
-;; There are as well model zoos existing, which allow to download pre-trained models.
+;; A model can for example be trained with Python sklearn and exported to ONNX format.
+;; There are as well model zoos existing, which allow to download pre-trained models on ONNX format.
 ;;
-;; We can open such file using the JAVA ONNX run-time with has the maven coordinates
+;; We can then open such file using the JAVA ONNX run-time which has the maven coordinates
 ;; com.microsoft.onnxruntime/onnxruntime {:mvn/version "1.19.0"}
 
 ;; ## Load and inspect ONNX file
-;; We use here a model which was trained on the well know iris data and can predict the species
+;; We use here a model which was trained on the well known iris data and can predict the species
 (def env (OrtEnvironment/getEnvironment))
 (def session (.createSession env "logreg_iris.onnx"))
 
 
 
-;;  We can inspect the model and among other things discover which input format it needs.
+;;  We can inspect the model and among other information discover which input format it needs.
 
 
 (j/from-java-deep
@@ -31,15 +31,15 @@
 ;; with dimensions (anyNumber, 4)
 ;; This matches our knowledge on the iris data, which has 4 columns (+ prediction)
 ;;
-;; In a similar way we can introspect the output after inference:
+;; In a similar way we can introspect the model output returned on inference:
 
 (j/from-java-deep
  (.getOutputInfo session)
  {})
 
-;; This outputs one value for each row of the input, which matches as well the iris data.
+;; This model predicts one value for each row of the input, which matches as well the iris data.
 
-;; Now we need to construct an instance of ai.onnxruntime.OnnxTensor of shape [-1,4]
+;; Now we need to construct an instance of ai.onnxruntime.OnnxTensor of shape [anyNumber,4]
 ;; This can be done starting from a vector-of-vector, for example
 
 ;; ## Run inference on arrays
@@ -56,7 +56,7 @@ tensor
 (def prediction (.run session {"float_input" tensor}))
 prediction
 
-;; We have two things in prediction result:
+;; We have two pieces of data in the prediction result:
 (map key prediction)
 
 ;; namely predicted labels and probabilities
@@ -82,7 +82,7 @@ prediction
                [7   8   2   10]]))
 
 
-;; we can convert it to a tensor as well easily
+;; we can convert it to a OnnxTensor as well easily
 
 (def tensor-2 
   (OnnxTensor/createTensor 
@@ -99,3 +99,5 @@ prediction
 ;;
 ;; Hopefuly over time the ONNX standard will see widespread use. Most sklearn models/pipelines can be exported 
 ;; to ONNX using [sklearn-onnx](https://onnx.ai/sklearn-onnx/)
+;; Other python ML frmeworks start to support ONNX as well for example PyTorch,
+;; see [PyTorch ONNX export](https://pytorch.org/tutorials/beginner/onnx/export_simple_model_to_onnx_tutorial.html)
