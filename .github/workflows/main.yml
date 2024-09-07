@@ -8,12 +8,6 @@ on:
 
 jobs:
 
-  detect-changes:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
 
   render-tutorials:
 
@@ -31,6 +25,9 @@ jobs:
           
     - name: print changed
       run: echo "${{steps.changed-files-dir-names.outputs.modified_files}}"
+
+    - name: print changed
+      run: echo "${{steps.changed-files-dir-names.outputs.modified_files[0]}}"
 
 
     
