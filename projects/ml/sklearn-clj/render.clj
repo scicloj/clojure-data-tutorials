@@ -11,3 +11,4 @@
              :book {:title "Use sklearn-clj "}
              :clean-up-target-dir true})
 (System/exit 0)
+
