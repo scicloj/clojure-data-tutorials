@@ -12,6 +12,9 @@ jobs:
   render-tutorials:
 
     runs-on: ubuntu-latest
+    concurrency:
+      group: build-tutorial
+      cancel-in-progress: true
     permissions:
       contents: write
     steps:
