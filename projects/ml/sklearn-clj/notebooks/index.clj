@@ -90,7 +90,7 @@ model-object
    ds-cat/reverse-map-categorical-xforms))
 
 ;; We get a tech.ml.dataset with the prediction result back.
-;; `sklearn-clj` aut-transform the prediction result back to a
+;; `sklearn-clj` auto-transform the prediction result back to a
 ;; tech.ml.dataset
 prediction
 

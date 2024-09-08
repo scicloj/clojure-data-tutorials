@@ -8,6 +8,7 @@ on:
 
 jobs:
 
+
   render-tutorials:
 
     runs-on: ubuntu-latest
@@ -16,8 +17,22 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
+    - name: Run changed-files with dir_names
+      id: changed-files-dir-names
+      uses: tj-actions/changed-files@v45
+      with:
+        dir_names: "true"
+          
+    - name: print changed
+      run: echo "${{steps.changed-files-dir-names.outputs.modified_files}}"
+
+    - name: print changed
+      run: echo "${{steps.changed-files-dir-names.outputs.modified_files[0]}}"
+
+
     
     - name: render tutorial in projects/noj
+      if: startsWith(steps.changed-files-dir-names.outputs.modified_files,'projects/noj')  
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/noj
@@ -26,6 +41,7 @@ jobs:
 
 
     - name: render tutorial in projects/datavis/python/plotting
+      if: startsWith(steps.changed-files-dir-names.outputs.modified_files[0],'projects/datavis/python/plotting')
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/datavis/python/plotting
@@ -34,6 +50,7 @@ jobs:
 
                
     - name: render tutorial in projects/datavis/ggplot
+      if: startsWith(steps.changed-files-dir-names.outputs.modified_files[0],'projects/datavis/ggplot')  
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/datavis/ggplot
@@ -42,6 +59,7 @@ jobs:
 
 
     - name: render tutorial in projects/ml/onnx
+      if: startsWith(steps.changed-files-dir-names.outputs.modified_files[0],'projects/ml/onnx')
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/ml/onnx
@@ -49,6 +67,7 @@ jobs:
                push: never
 
     - name: render tutorial in projects/ml/sklearn-clj
+      if: startsWith(steps.changed-files-dir-names.outputs.modified_files[0],'projects/ml/sklearn-clj') 
       uses: devcontainers/ci@v0.3
       with:    
                subFolder: projects/ml/sklearn-clj
@@ -58,7 +77,7 @@ jobs:
     
     - name: clean docs
       run: |
-         rm -rf docs/*.*
+         #rm -rf docs/*.*
 
     - name: combine all tutorials
       uses: tzafrirben/babashka-docker-action@v1.1
