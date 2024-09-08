@@ -24,7 +24,7 @@
 ;; the standart Clojure functions in `metamorph.ml`
 
 ;; # Use iris data
-;; Lets first get our data, the well kownn iris dataset
+;; Lets first get our data, the well kownn iris dataset.
 (def iris
   (-> (toydata/iris-ds)
       (ds-mod/set-inference-target :species)
