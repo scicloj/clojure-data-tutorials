@@ -1,18 +1,10 @@
-(ns index 
-  (:require [scicloj.metamorph.ml.toydata :as toydata]
-            [scicloj.metamorph.core :as mm]
-            [libpython-clj2.python :as py]
-            [tablecloth.api :as tc]
-            [tech.v3.dataset.categorical :as ds-cat]
-            [tech.v3.dataset.column-filters :as ds-cf]
-            [scicloj.metamorph.ml :as ml]))
+(ns index)
 
 (require '[scicloj.metamorph.ml :as ml]
          '[scicloj.metamorph.core :as mm]
          '[scicloj.metamorph.ml.toydata :as toydata]
          '[tablecloth.api :as tc]
          '[tech.v3.dataset :as ds]
-         '[tech.v3.dataset.categorical :as ds-cat]
          '[tech.v3.dataset.column-filters :as ds-cf]
          '[tech.v3.dataset.modelling :as ds-mod]
          '[libpython-clj2.python :refer [py. py.-] :as py])
