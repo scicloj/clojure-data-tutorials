@@ -5,8 +5,7 @@
 
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
-			"ppas": ["ppa:ubuntuhandbook1/emacs"],
-			"packages": "r-base-dev,emacs,rlwrap,fonts-hack"
+			"packages": "rlwrap"
 		},
 		"ghcr.io/devcontainers/features/python:1": {},
 		"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {},
