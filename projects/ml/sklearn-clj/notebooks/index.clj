@@ -78,13 +78,11 @@ model-object
   (tc/head (tc/shuffle iris) 10) )
 
 (def prediction
-  (->
-   (:metamorph/data
+  (:metamorph/data
     (mm/transform-pipe 
      simulated-new-data  
      pipe-fn 
-     trained-ctx))
-   ds-cat/reverse-map-categorical-xforms))
+     trained-ctx)))
 
 ;; We get a tech.ml.dataset with the prediction result back.
 ;; `sklearn-clj` auto-transform the prediction result back to a
