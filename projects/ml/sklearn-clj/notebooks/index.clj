@@ -5,8 +5,6 @@
             [tablecloth.api :as tc]
             [tech.v3.dataset.categorical :as ds-cat]))
 
-
-
 (require '[scicloj.metamorph.ml :as ml]
          '[scicloj.metamorph.core :as mm]
          '[scicloj.metamorph.ml.toydata :as toydata]
