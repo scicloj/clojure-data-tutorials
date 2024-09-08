@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">sklearn-clj</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">sklearn-clj</span></span></a>
   </div>
 </li>
     </ul>
@@ -154,15 +154,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
-  <li><a href="#use-iris-data" id="toc-use-iris-data" class="nav-link" data-scroll-target="#use-iris-data"><span class="header-section-number">2</span> Use iris data</a></li>
-  <li><a href="#register-models" id="toc-register-models" class="nav-link" data-scroll-target="#register-models"><span class="header-section-number">3</span> Register models</a></li>
-  <li><a href="#train-sklearn-model" id="toc-train-sklearn-model" class="nav-link" data-scroll-target="#train-sklearn-model"><span class="header-section-number">4</span> Train sklearn model</a>
+  <li><a href="#sklearn-clj" id="toc-sklearn-clj" class="nav-link active" data-scroll-target="#sklearn-clj"><span class="header-section-number">1</span> sklearn-clj</a></li>
+  <li><a href="#train-sklearn-model-with-sklearn-clj" id="toc-train-sklearn-model-with-sklearn-clj" class="nav-link" data-scroll-target="#train-sklearn-model-with-sklearn-clj"><span class="header-section-number">2</span> Train sklearn model with <code>sklearn-clj</code></a>
   <ul>
-  <li><a href="#define-metamorph-pipeline" id="toc-define-metamorph-pipeline" class="nav-link" data-scroll-target="#define-metamorph-pipeline"><span class="header-section-number">4.1</span> Define metamorph pipeline</a></li>
-  <li><a href="#train-model" id="toc-train-model" class="nav-link" data-scroll-target="#train-model"><span class="header-section-number">4.2</span> Train model</a></li>
-  <li><a href="#inspect-trained-model" id="toc-inspect-trained-model" class="nav-link" data-scroll-target="#inspect-trained-model"><span class="header-section-number">4.3</span> Inspect trained model</a></li>
+  <li><a href="#use-iris-data" id="toc-use-iris-data" class="nav-link" data-scroll-target="#use-iris-data"><span class="header-section-number">2.1</span> Use iris data</a></li>
+  <li><a href="#register-models" id="toc-register-models" class="nav-link" data-scroll-target="#register-models"><span class="header-section-number">2.2</span> Register models</a></li>
+  <li><a href="#define-metamorph-pipeline" id="toc-define-metamorph-pipeline" class="nav-link" data-scroll-target="#define-metamorph-pipeline"><span class="header-section-number">2.3</span> Define metamorph pipeline</a></li>
+  <li><a href="#use-tech.dataset-as-training-data" id="toc-use-tech.dataset-as-training-data" class="nav-link" data-scroll-target="#use-tech.dataset-as-training-data"><span class="header-section-number">2.4</span> Use tech.dataset as training data</a></li>
+  <li><a href="#inspect-trained-model" id="toc-inspect-trained-model" class="nav-link" data-scroll-target="#inspect-trained-model"><span class="header-section-number">2.5</span> Inspect trained model</a></li>
   </ul></li>
+  <li><a href="#train-model-with-sklearn-using-libpython-clj-directly" id="toc-train-model-with-sklearn-using-libpython-clj-directly" class="nav-link" data-scroll-target="#train-model-with-sklearn-using-libpython-clj-directly"><span class="header-section-number">3</span> Train model with sklearn using libpython-clj directly</a></li>
+  <li><a href="#train-model-with-sklearn-using-libpython-clj-from-tech-dataset" id="toc-train-model-with-sklearn-using-libpython-clj-from-tech-dataset" class="nav-link" data-scroll-target="#train-model-with-sklearn-using-libpython-clj-from-tech-dataset"><span class="header-section-number">4</span> Train model with sklearn using libpython-clj from tech dataset</a></li>
+  <li><a href="#annex" id="toc-annex" class="nav-link" data-scroll-target="#annex"><span class="header-section-number">5</span> Annex</a></li>
   </ul>
 </nav>
     </div>
@@ -206,7 +209,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>            [scicloj.metamorph.core <span class="at">:as</span> mm]</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            [libpython-clj2.python <span class="at">:as</span> py]</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            [tablecloth.api <span class="at">:as</span> tc]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            [tech.v3.dataset.categorical <span class="at">:as</span> ds-cat]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            [tech.v3.dataset.categorical <span class="at">:as</span> ds-cat]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            [tech.v3.dataset.column-filters <span class="at">:as</span> ds-cf]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            [scicloj.metamorph.ml <span class="at">:as</span> ml]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb2"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">require</span> '[scicloj.metamorph.ml <span class="at">:as</span> ml]</span>
@@ -215,16 +220,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         '[tablecloth.api <span class="at">:as</span> tc]</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         '[tech.v3.dataset <span class="at">:as</span> ds]</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>         '[tech.v3.dataset.categorical <span class="at">:as</span> ds-cat]</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>         '[tech.v3.dataset.modelling <span class="at">:as</span> ds-mod]</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>         '[libpython-clj2.python <span class="at">:refer</span> [py. py.<span class="kw">-</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>         '[tech.v3.dataset.column-filters <span class="at">:as</span> ds-cf]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>         '[tech.v3.dataset.modelling <span class="at">:as</span> ds-mod]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>         '[libpython-clj2.python <span class="at">:refer</span> [py. py.<span class="kw">-</span>] <span class="at">:as</span> py])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p><a href="https://github.com/scicloj/sklearn-clj">sklearn-clj</a> is a Clojure librray which allows to use all sklearn estimators (models and others) from Clojure It use <a href="https://github.com/clj-python/libpython-clj">libpython-clj</a> behind the scenes but we do not need to use the <code>libpython-clj</code> API. All models are available via the standart Clojure functions in <code>metamorph.ml</code></p>
+<section id="sklearn-clj" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> sklearn-clj</h1>
+<p><a href="https://github.com/scicloj/sklearn-clj">sklearn-clj</a> is a Clojure library which allows to use all sklearn estimators (models and others) from Clojure. It uses <a href="https://github.com/clj-python/libpython-clj">libpython-clj</a> behind the scenes but we do not need to use the <code>libpython-clj</code> API. All models are available via the standard Clojure functions in <code>metamorph.ml</code>.</p>
 </section>
-<section id="use-iris-data" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Use iris data</h1>
-<p>Lets first get our data, the well kownn iris dataset.</p>
+<section id="train-sklearn-model-with-sklearn-clj" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Train sklearn model with <code>sklearn-clj</code></h1>
+<p>In this scenario, we will not use any sklearn or libpython-clj API, only <code>metamorph.ml</code> functions</p>
+<section id="use-iris-data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="use-iris-data"><span class="header-section-number">2.1</span> Use iris data</h2>
+<p>Lets first get our data, the well known iris dataset:</p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb3"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> iris</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">-&gt;</span> (toydata/iris-ds)</span>
@@ -232,77 +241,269 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      (ds/categorical-&gt;number [<span class="at">:species</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="register-models" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Register models</h1>
+<section id="register-models" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="register-models"><span class="header-section-number">2.2</span> Register models</h2>
 <p>This <code>require</code> will register all sklearn models and make them available to <code>metamorph.ml</code></p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb4"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">require</span> '[scicloj.sklearn-clj.ml])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="train-sklearn-model" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Train sklearn model</h1>
-<section id="define-metamorph-pipeline" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="define-metamorph-pipeline"><span class="header-section-number">4.1</span> Define metamorph pipeline</h2>
-<p>All models are available by specifying keys in form of :sklearn.xxx.yyy for the model type. The available models are listed <a href="https://scicloj.github.io/scicloj.ml-tutorials/userguide-sklearnclj.html">here</a> (The list is a bit old, from sklearn 1.0.0)</p>
-<p>We define a normal <code>metamorph.ml</code> pipeline, as we would to with Clojure models.</p>
+<section id="define-metamorph-pipeline" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="define-metamorph-pipeline"><span class="header-section-number">2.3</span> Define metamorph pipeline</h2>
+<p>All models are available by specifying keys in form of :sklearn.xxx.yyy for the model type. The available models are listed in the annex. They take the same parameters as in sklearn, just in kebap case.</p>
+<p>We define a normal <code>metamorph.ml</code> pipeline, as we would do with Clojure models.</p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb5"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> pipe-fn</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  (mm/pipeline</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>   {<span class="at">:metamorph/id</span> <span class="at">:model</span>}</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   (ml/model {<span class="at">:model-type</span> <span class="at">:sklearn.classification/logistic-regression</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">:max-iter</span> <span class="dv">1000</span>})))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">:max-iter</span> <span class="dv">1000</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">:verbose</span> <span class="va">true</span>})))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>It will use sklearn model “sklearn.linear_model.LogisticRegression”</p>
 </section>
-<section id="train-model" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="train-model"><span class="header-section-number">4.2</span> Train model</h2>
-<p>We can train the model using a tech.ml.dataset as training data. <code>sklearn-clj</code> will transform the data behind the scenes to numpy arrays, which the sklearn models expect.</p>
+<section id="use-tech.dataset-as-training-data" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="use-tech.dataset-as-training-data"><span class="header-section-number">2.4</span> Use tech.dataset as training data</h2>
+<p>We need to train the model using a tech.ml.dataset as training data. <code>sklearn-clj</code> will transform the data behind the scenes to a tech.v3.tensor, which libpython-clj auto-transforms to a numpy array , which the model can work with.</p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb6"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> trained-ctx </span>(mm/fit-pipe iris pipe-fn))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb7"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>trained-ctx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div><p>{</p><div class="clay-map" style="margin-left:10%;width:110%;">
+<table class="caption-top table" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td data-valign="top"><div>
+<pre class="sourceCode language-clojure printed-clojure code-with-copy"><code>:metamorph/data</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre>
+</div></td>
+<td><div style="margin-left:10px;">
+<div class="clay-dataset">
+<p>_unnamed [150 5]:</p>
+<table class="table caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">:sepal_length</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">:sepal_width</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">:petal_length</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">:petal_width</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">:species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4.9</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4.6</td>
+<td style="text-align: right;">3.1</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">3.6</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4.6</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4.4</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4.9</td>
+<td style="text-align: right;">3.1</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">...</td>
+<td style="text-align: right;">...</td>
+<td style="text-align: right;">...</td>
+<td style="text-align: right;">...</td>
+<td style="text-align: right;">...</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.9</td>
+<td style="text-align: right;">3.1</td>
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">2.1</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6.7</td>
+<td style="text-align: right;">3.1</td>
+<td style="text-align: right;">5.6</td>
+<td style="text-align: right;">2.4</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.9</td>
+<td style="text-align: right;">3.1</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.8</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.8</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6.7</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">5.7</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.7</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">5.2</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">5.2</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6.2</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">1.8</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+<div><pre><code class="sourceCode language-clojure printed-clojure">:metamorph/mode :fit</code></pre></div><div><pre><code class="sourceCode language-clojure printed-clojure">:model {:model-data {:model LogisticRegression(max_iter=1000, verbose=True), :predict-proba? true, :pickled-model #object["[S" 0x3cdd3349 "[S@3cdd3349"], :attributes {:n_features_in_ 4, :coef_ [[-0.42456599  0.96664261 -2.51554625 -1.08216927]
+ [ 0.53541119 -0.32073935 -0.20740629 -0.94263206]
+ [-0.1108452  -0.64590325  2.72295254  2.02480133]], :intercept_ [  9.85494228   2.23117432 -12.0861166 ], :n_iter_ [109], :classes_ [0. 1. 2.]}}, :options {:model-type :sklearn.classification/logistic-regression, :max-iter 1000, :verbose true}, :id #uuid "833e6a6b-34db-47fa-ab17-354403882f85", :feature-columns [:sepal_length :sepal_width :petal_length :petal_width], :target-columns [:species], :target-categorical-maps {:species #tech.v3.dataset.categorical.CategoricalMap{:lookup-table {0 0, 1 1, 2 2}, :src-column :species, :result-datatype :float64}}, :scicloj.metamorph.ml/unsupervised? nil}</code></pre></div></div><p>}</p></div>
 </section>
-<section id="inspect-trained-model" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="inspect-trained-model"><span class="header-section-number">4.3</span> Inspect trained model</h2>
+<section id="inspect-trained-model" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="inspect-trained-model"><span class="header-section-number">2.5</span> Inspect trained model</h2>
 <p>We can inspect the model object:</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb7"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> model-object</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">-&gt;</span> trained-ctx <span class="at">:model</span> <span class="at">:model-data</span> <span class="at">:model</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> model-object</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">-&gt;</span> trained-ctx <span class="at">:model</span> <span class="at">:model-data</span> <span class="at">:model</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It’s a libpython-clj reference to a python object</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb8"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model-object</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model-object</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb9"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>LogisticRegression(max_iter=<span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>LogisticRegression(max_iter=<span class="dv">1000</span>, verbose=True)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and use <code>libpython-clj</code> functions to get information out of it. We can get the models coefficients, for example:</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb10"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(py/-&gt;jvm</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  (py.<span class="kw">-</span> model-object coef_))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(py/-&gt;jvm</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  (py.<span class="kw">-</span> model-object coef_))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb11"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&lt;float64&gt;[<span class="dv">3</span> <span class="dv">4</span>]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>[[-<span class="fl">0.4246</span>  <span class="fl">0.9666</span>  -<span class="fl">2.516</span>  -<span class="fl">1.082</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">0.5354</span> -<span class="fl">0.3207</span> -<span class="fl">0.2074</span> -<span class="fl">0.9426</span>]</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> [-<span class="fl">0.1108</span> -<span class="fl">0.6459</span>   <span class="fl">2.723</span>   <span class="fl">2.025</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&lt;float64&gt;[<span class="dv">3</span> <span class="dv">4</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>[[-<span class="fl">0.4246</span>  <span class="fl">0.9666</span>  -<span class="fl">2.516</span>  -<span class="fl">1.082</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">0.5354</span> -<span class="fl">0.3207</span> -<span class="fl">0.2074</span> -<span class="fl">0.9426</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a> [-<span class="fl">0.1108</span> -<span class="fl">0.6459</span>   <span class="fl">2.723</span>   <span class="fl">2.025</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>we can as well ask for predict on new data</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb12"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> simulated-new-data </span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  (tc/head (tc/shuffle iris) <span class="dv">10</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> simulated-new-data </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  (tc/head (tc/shuffle iris) <span class="dv">10</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb13"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> prediction</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">-&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>   (<span class="at">:metamorph/data</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    (mm/transform-pipe </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>     simulated-new-data  </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>     pipe-fn </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>     trained-ctx))</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>   ds-cat/reverse-map-categorical-xforms))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> prediction</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">-&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>   (<span class="at">:metamorph/data</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    (mm/transform-pipe </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>     simulated-new-data  </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>     pipe-fn </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>     trained-ctx))</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>   ds-cat/reverse-map-categorical-xforms))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We get a tech.ml.dataset with the prediction result back. <code>sklearn-clj</code> auto-transform the prediction result back to a tech.ml.dataset</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb14"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>prediction</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>prediction</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="clay-dataset">
 <p>:_unnamed [10 4]:</p>
@@ -317,73 +518,555 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.97014304</td>
-<td style="text-align: right;">0.02985689</td>
-<td style="text-align: right;">0.00000007</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00872745</td>
+<td style="text-align: right;">0.77461592</td>
+<td style="text-align: right;">2.16656626E-01</td>
+<td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">0.98317946</td>
-<td style="text-align: right;">0.01682052</td>
-<td style="text-align: right;">0.00000002</td>
+<td style="text-align: right;">0.98659131</td>
+<td style="text-align: right;">0.01340868</td>
+<td style="text-align: right;">1.29649648E-08</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">0.00102345</td>
-<td style="text-align: right;">0.38536012</td>
-<td style="text-align: right;">0.61361643</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.97701547</td>
+<td style="text-align: right;">0.02298451</td>
+<td style="text-align: right;">1.75129179E-08</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">0.02001004</td>
-<td style="text-align: right;">0.93806817</td>
-<td style="text-align: right;">0.04192179</td>
+<td style="text-align: right;">0.00699746</td>
+<td style="text-align: right;">0.86006552</td>
+<td style="text-align: right;">1.32937015E-01</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">0.96834355</td>
-<td style="text-align: right;">0.03165640</td>
-<td style="text-align: right;">0.00000004</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">0.00277652</td>
-<td style="text-align: right;">0.89669226</td>
-<td style="text-align: right;">0.10053122</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">0.00000248</td>
-<td style="text-align: right;">0.02559259</td>
-<td style="text-align: right;">0.97440493</td>
+<td style="text-align: right;">0.00107238</td>
+<td style="text-align: right;">0.45647594</td>
+<td style="text-align: right;">5.42451683E-01</td>
 <td style="text-align: right;">2</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">0.97839393</td>
-<td style="text-align: right;">0.02160605</td>
-<td style="text-align: right;">0.00000002</td>
+<td style="text-align: right;">0.98892134</td>
+<td style="text-align: right;">0.01107866</td>
+<td style="text-align: right;">5.36089332E-09</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
+<td style="text-align: right;">0.96929487</td>
+<td style="text-align: right;">0.03070504</td>
+<td style="text-align: right;">8.66047682E-08</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.00000065</td>
+<td style="text-align: right;">0.00574967</td>
+<td style="text-align: right;">9.94249673E-01</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.00000789</td>
+<td style="text-align: right;">0.02726308</td>
+<td style="text-align: right;">9.72729032E-01</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
 <td style="text-align: right;">0.00005567</td>
 <td style="text-align: right;">0.12293040</td>
-<td style="text-align: right;">0.87701392</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">0.00000205</td>
-<td style="text-align: right;">0.01259405</td>
-<td style="text-align: right;">0.98740390</td>
+<td style="text-align: right;">8.77013924E-01</td>
 <td style="text-align: right;">2</td>
 </tr>
 </tbody>
 </table>
 </div>
+</section>
+</section>
+<section id="train-model-with-sklearn-using-libpython-clj-directly" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Train model with sklearn using libpython-clj directly</h1>
+<p>As alternative approach we can use <code>libpython-clj</code> as well directly.</p>
+<p>I take the following example an translate 1:1 into Clojure using libpython-clj https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html</p>
+<p>Import python modules as Clojure vars</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb17"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(py/from-import sklearn.svm  SVC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb18"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="va">#'index/SVC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb19"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(py/from-import sklearn.preprocessing StandardScaler)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb20"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="va">#'index/StandardScaler</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb21"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(py/from-import sklearn.datasets make_classification)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb22"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="va">#'index/make_classification</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb23"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(py/from-import sklearn.model_selection train_test_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb24"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="va">#'index/train_test_split</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb25"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(py/from-import sklearn.pipeline Pipeline)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb26"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="va">#'index/Pipeline</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb27"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(py/import-as numpy np)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb28"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="va">#'index/np</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Define X and y from artifical data</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb29"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(py/def-unpack [X y] ( make_classification  <span class="at">:random</span>_state <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb30"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="va">#'index/y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Split data in test and train</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb31"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(py/def-unpack [X_train X_test y_train y_test] </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>               ( train_test_split  X y <span class="at">:random</span>_state <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb32"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="va">#'index/y_test</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>we get 4 vars , example:</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb33"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>X_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb34"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>[[-<span class="fl">0.65240858</span>  <span class="fl">0.49374178</span>  <span class="fl">1.30184623</span> ... -<span class="fl">1.30819171</span> -<span class="fl">1.04525337</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.11054066</span>]</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">0.35178011</span> -<span class="fl">0.47003288</span> -<span class="fl">0.37914756</span> ... -<span class="fl">2.38076394</span> -<span class="fl">0.11048941</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">1.55042935</span>]</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a> [-<span class="fl">1.58249448</span> -<span class="fl">1.42279491</span> -<span class="fl">0.56430103</span> ...  <span class="fl">1.26661394</span> -<span class="fl">1.31771734</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>   <span class="fl">1.61805427</span>]</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a> ...</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a> [-<span class="fl">0.96050438</span> -<span class="fl">2.28862004</span>  <span class="fl">1.02943883</span> ... -<span class="fl">0.79347019</span>  <span class="fl">1.12859406</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.27567053</span>]</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">0.91017891</span>  <span class="fl">0.78632796</span>  <span class="fl">0.06326199</span> ...  <span class="fl">0.42234144</span> -<span class="fl">0.46359597</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.01702041</span>]</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a> [-<span class="fl">0.87916063</span> -<span class="fl">1.63880731</span> -<span class="fl">0.30769128</span> ... -<span class="fl">0.6054158</span>   <span class="fl">1.57886519</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>   <span class="fl">0.73165893</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We define a pipeline with a standard scaler and a support vector machine model:</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb35"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> pipe </span>( Pipeline  [[ <span class="st">"scaler"</span> ( StandardScaler)]  </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                      [ <span class="st">"svc"</span> ( SVC)] ]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb36"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>pipe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb37"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>Pipeline(steps=((<span class="at">'scaler',</span> StandardScaler()), (<span class="at">'svc',</span> SVC())))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Train and score the pipeline:</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb38"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(py/py.. pipe</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>         (fit  X_train y_train)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>         (score  X_test, y_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb39"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.88</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Train and score the pipeline and set parameter:</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb40"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>(py/py.. pipe</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>         (set_params <span class="at">:svc</span>__C <span class="dv">10</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>         (fit  X_train y_train)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>         (score  X_test, y_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb41"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.76</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="train-model-with-sklearn-using-libpython-clj-from-tech-dataset" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Train model with sklearn using libpython-clj from tech dataset</h1>
+<p>When we start with a tech.dataset, like</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb42"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">-&gt;</span> iris tc/shuffle tc/head)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="clay-dataset">
+<p>_unnamed [5 5]:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">:sepal_length</th>
+<th style="text-align: right;">:sepal_width</th>
+<th style="text-align: right;">:petal_length</th>
+<th style="text-align: right;">:petal_width</th>
+<th style="text-align: right;">:species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">4.9</td>
+<td style="text-align: right;">1.8</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">3.7</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">4.9</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6.1</td>
+<td style="text-align: right;">2.8</td>
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">1.2</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>we need to first split it in :train and :test and convert it to row vectors in (java) array format. Then libpython-clj knows how to convert these into python (numpy)</p>
+<p>Split in test and train:</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb43"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> train-test-split </span>(tc/split-&gt;seq iris))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>where data looks like this:</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb44"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">-&gt;</span> train-test-split <span class="kw">first</span> <span class="at">:train</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="clay-dataset">
+<p>Group: 0 [120 5]:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">:sepal_length</th>
+<th style="text-align: right;">:sepal_width</th>
+<th style="text-align: right;">:petal_length</th>
+<th style="text-align: right;">:petal_width</th>
+<th style="text-align: right;">:species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">5.7</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">1.8</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5.7</td>
+<td style="text-align: right;">4.4</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6.7</td>
+<td style="text-align: right;">3.1</td>
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.9</td>
+<td style="text-align: right;">3.1</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6.0</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7.7</td>
+<td style="text-align: right;">2.6</td>
+<td style="text-align: right;">6.9</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.8</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">5.5</td>
+<td style="text-align: right;">2.1</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7.7</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">6.7</td>
+<td style="text-align: right;">2.2</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.2</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4.4</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4.4</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.5</td>
+<td style="text-align: right;">2.4</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">4.9</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.2</td>
+<td style="text-align: right;">4.1</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>a helper to call numpy.ravel() easier</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb45"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">defn</span><span class="fu"> ravel </span>[x]</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  (py. np ravel x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>fit the pipeline to tech dataset, :train subset</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb46"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> fitted-pipe</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  (py/py. pipe</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>          fit</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>          (<span class="kw">-&gt;</span> train-test-split <span class="kw">first</span> <span class="at">:train</span> ds-cf/feature tc/rows)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>          (<span class="kw">-&gt;</span> train-test-split <span class="kw">first</span> <span class="at">:train</span> ds-cf/target tc/rows ravel)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>predict the pipeline to tech dataset :test subset</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb47"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>(py/py. fitted-pipe predict</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>         (<span class="kw">-&gt;</span> train-test-split <span class="kw">first</span> <span class="at">:test</span> ds-cf/feature tc/rows))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb48"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>[<span class="fl">1.</span> <span class="fl">0.</span> <span class="fl">1.</span> <span class="fl">1.</span> <span class="fl">2.</span> <span class="fl">0.</span> <span class="fl">2.</span> <span class="fl">0.</span> <span class="fl">0.</span> <span class="fl">0.</span> <span class="fl">2.</span> <span class="fl">1.</span> <span class="fl">0.</span> <span class="fl">1.</span> <span class="fl">2.</span> <span class="fl">2.</span> <span class="fl">0.</span> <span class="fl">1.</span> <span class="fl">0.</span> <span class="fl">0.</span> <span class="fl">2.</span> <span class="fl">2.</span> <span class="fl">0.</span> <span class="fl">0.</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a> <span class="fl">2.</span> <span class="fl">0.</span> <span class="fl">2.</span> <span class="fl">2.</span> <span class="fl">1.</span> <span class="fl">0.</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>score the model on :test data</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb49"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>(py/py. fitted-pipe score</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>        (<span class="kw">-&gt;</span> train-test-split <span class="kw">first</span> <span class="at">:test</span> ds-cf/feature tc/rows)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>        (<span class="kw">-&gt;</span> train-test-split <span class="kw">first</span> <span class="at">:test</span> ds-cf/target tc/rows))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb50"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.9666666666666667</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="annex" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Annex</h1>
+<p>List of model types of all sklearn models supported by sklearn-clj (when using sklearn 1.5.1)</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb51"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">-&gt;&gt;</span> <span class="at">@ml/model-definitions*</span> <span class="kw">keys</span> <span class="kw">sort</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb52"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">:sklearn.classification/ada-boost-classifier</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/bagging-classifier</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/bernoulli-nb</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/calibrated-classifier-cv</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/categorical-nb</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/complement-nb</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/decision-tree-classifier</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/dummy-classifier</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/extra-tree-classifier</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/extra-trees-classifier</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/gaussian-nb</span></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/gaussian-process-classifier</span></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/gradient-boosting-classifier</span></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/hist-gradient-boosting-classifier</span></span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/k-neighbors-classifier</span></span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/label-propagation</span></span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/label-spreading</span></span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/linear-discriminant-analysis</span></span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/linear-svc</span></span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/logistic-regression</span></span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/logistic-regression-cv</span></span>
+<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/mlp-classifier</span></span>
+<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/multinomial-nb</span></span>
+<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/nearest-centroid</span></span>
+<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/nu-svc</span></span>
+<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/passive-aggressive-classifier</span></span>
+<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/perceptron</span></span>
+<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/quadratic-discriminant-analysis</span></span>
+<span id="cb52-29"><a href="#cb52-29" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/radius-neighbors-classifier</span></span>
+<span id="cb52-30"><a href="#cb52-30" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/random-forest-classifier</span></span>
+<span id="cb52-31"><a href="#cb52-31" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/ridge-classifier</span></span>
+<span id="cb52-32"><a href="#cb52-32" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/ridge-classifier-cv</span></span>
+<span id="cb52-33"><a href="#cb52-33" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/sgd-classifier</span></span>
+<span id="cb52-34"><a href="#cb52-34" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.classification/svc</span></span>
+<span id="cb52-35"><a href="#cb52-35" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/ada-boost-regressor</span></span>
+<span id="cb52-36"><a href="#cb52-36" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/ard-regression</span></span>
+<span id="cb52-37"><a href="#cb52-37" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/bagging-regressor</span></span>
+<span id="cb52-38"><a href="#cb52-38" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/bayesian-ridge</span></span>
+<span id="cb52-39"><a href="#cb52-39" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/cca</span></span>
+<span id="cb52-40"><a href="#cb52-40" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/decision-tree-regressor</span></span>
+<span id="cb52-41"><a href="#cb52-41" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/dummy-regressor</span></span>
+<span id="cb52-42"><a href="#cb52-42" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/elastic-net</span></span>
+<span id="cb52-43"><a href="#cb52-43" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/elastic-net-cv</span></span>
+<span id="cb52-44"><a href="#cb52-44" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/extra-tree-regressor</span></span>
+<span id="cb52-45"><a href="#cb52-45" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/extra-trees-regressor</span></span>
+<span id="cb52-46"><a href="#cb52-46" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/gamma-regressor</span></span>
+<span id="cb52-47"><a href="#cb52-47" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/gaussian-process-regressor</span></span>
+<span id="cb52-48"><a href="#cb52-48" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/gradient-boosting-regressor</span></span>
+<span id="cb52-49"><a href="#cb52-49" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/hist-gradient-boosting-regressor</span></span>
+<span id="cb52-50"><a href="#cb52-50" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/huber-regressor</span></span>
+<span id="cb52-51"><a href="#cb52-51" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/isotonic-regression</span></span>
+<span id="cb52-52"><a href="#cb52-52" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/k-neighbors-regressor</span></span>
+<span id="cb52-53"><a href="#cb52-53" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/kernel-ridge</span></span>
+<span id="cb52-54"><a href="#cb52-54" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/lars</span></span>
+<span id="cb52-55"><a href="#cb52-55" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/lars-cv</span></span>
+<span id="cb52-56"><a href="#cb52-56" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/lasso</span></span>
+<span id="cb52-57"><a href="#cb52-57" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/lasso-cv</span></span>
+<span id="cb52-58"><a href="#cb52-58" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/lasso-lars</span></span>
+<span id="cb52-59"><a href="#cb52-59" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/lasso-lars-cv</span></span>
+<span id="cb52-60"><a href="#cb52-60" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/lasso-lars-ic</span></span>
+<span id="cb52-61"><a href="#cb52-61" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/linear-regression</span></span>
+<span id="cb52-62"><a href="#cb52-62" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/linear-svr</span></span>
+<span id="cb52-63"><a href="#cb52-63" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/mlp-regressor</span></span>
+<span id="cb52-64"><a href="#cb52-64" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/multi-task-elastic-net</span></span>
+<span id="cb52-65"><a href="#cb52-65" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/multi-task-elastic-net-cv</span></span>
+<span id="cb52-66"><a href="#cb52-66" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/multi-task-lasso</span></span>
+<span id="cb52-67"><a href="#cb52-67" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/multi-task-lasso-cv</span></span>
+<span id="cb52-68"><a href="#cb52-68" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/nu-svr</span></span>
+<span id="cb52-69"><a href="#cb52-69" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/orthogonal-matching-pursuit</span></span>
+<span id="cb52-70"><a href="#cb52-70" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/orthogonal-matching-pursuit-cv</span></span>
+<span id="cb52-71"><a href="#cb52-71" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/passive-aggressive-regressor</span></span>
+<span id="cb52-72"><a href="#cb52-72" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/pls-canonical</span></span>
+<span id="cb52-73"><a href="#cb52-73" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/pls-regression</span></span>
+<span id="cb52-74"><a href="#cb52-74" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/poisson-regressor</span></span>
+<span id="cb52-75"><a href="#cb52-75" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/quantile-regressor</span></span>
+<span id="cb52-76"><a href="#cb52-76" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/radius-neighbors-regressor</span></span>
+<span id="cb52-77"><a href="#cb52-77" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/random-forest-regressor</span></span>
+<span id="cb52-78"><a href="#cb52-78" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/ransac-regressor</span></span>
+<span id="cb52-79"><a href="#cb52-79" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/ridge</span></span>
+<span id="cb52-80"><a href="#cb52-80" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/ridge-cv</span></span>
+<span id="cb52-81"><a href="#cb52-81" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/sgd-regressor</span></span>
+<span id="cb52-82"><a href="#cb52-82" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/svr</span></span>
+<span id="cb52-83"><a href="#cb52-83" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/theil-sen-regressor</span></span>
+<span id="cb52-84"><a href="#cb52-84" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/transformed-target-regressor</span></span>
+<span id="cb52-85"><a href="#cb52-85" aria-hidden="true" tabindex="-1"></a> <span class="at">:sklearn.regression/tweedie-regressor</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div style="background-color:grey;height:2px;width:100%;"></div>
 <div><pre><small><small>source: projects/ml/sklearn-clj/notebooks/index.clj</small></small></pre></div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
