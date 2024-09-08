@@ -24,7 +24,7 @@
 ;; which allows to use all sklearn estimators (models and others) from Clojure.
 ;; It uses [libpython-clj](https://github.com/clj-python/libpython-clj) behind the scenes
 ;; but we do not need to use the `libpython-clj` API. All models are available via
-;; the standard Clojure functions in `metamorph.ml`
+;; the standard Clojure functions in `metamorph.ml`.
 
 
 ;; # Train sklearn model with `sklearn-clj`
