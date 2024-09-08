@@ -24,7 +24,6 @@
 ;; but we do not need to use the `libpython-clj` API. All models are available via
 ;; the standard Clojure functions in `metamorph.ml`.
 
-
 ;; # Train sklearn model with `sklearn-clj`
 ;; In this scenario, we will not use any sklearn or libpython-clj API, only `metamorph.ml` functions
 
