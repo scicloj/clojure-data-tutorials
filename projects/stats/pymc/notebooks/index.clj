@@ -140,6 +140,10 @@ pm/__version__
            (let [step (pm/Slice)]
              (pm/sample 5000 :step step))))
 
+slice-idata
+
+;; ## Posterior analysis
+
 ;; Let us plot our sampling using ArViZ:
 
 (pyplot/pyplot
