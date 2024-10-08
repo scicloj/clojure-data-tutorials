@@ -7,6 +7,8 @@
 
 ;; ## Setup
 
+;; Relevant Clojure namespaces:
+
 (ns index
   (:require [libpython-clj2.require :refer [require-python]]
             [libpython-clj2.python :refer [py. py.. py.-] :as py]
@@ -14,8 +16,11 @@
             [tablecloth.api :as tc]
             [tablecloth.column.api :as tcc]
             [tech.v3.datatype :as dtype]
-            [scicloj.hanamicloth.v1.plotlycloth :as ploclo]))
+            [scicloj.hanamicloth.v1.plotlycloth :as ploclo]
+            [scicloj.kind-pyplot.v1.api :as pyplot]
+            [scicloj.kindly.v4.kind :as kind]))
 
+;; Relevant Python modules:
 
 (require-python '[builtins :as python]
                 'operator
@@ -27,12 +32,17 @@
                 '[numpy.random :as np.random]
                 '[pymc :as pm])
 
+;; Some convenience functions to access Python idioms: 
 
 (defn brackets [obj entry]
   (py. obj __getitem__ entry))
 
 (def colon
   (python/slice nil nil))
+
+;; Theme for ArViZ visualizations:
+
+;; ## Synthetic data
 
 (arviz.style/use "arviz-darkgrid")
 
@@ -71,7 +81,8 @@
      (mapv (fn [x]
              (-> dataset
                  (ploclo/layer-point
-                  {:=x :x1})))))
+                  {:=x :x1}))))
+     kind/fragment)
 
 pm/__version__
 
@@ -84,7 +95,7 @@ pm/__version__
                alpha (pm/Normal "alpha"
                                 :mu 0
                                 :sigma 10)
-               beta (pm/Normal "bega"
+               beta (pm/Normal "beta"
                                :mu 0
                                :sigma 10
                                :shape 2)
@@ -116,8 +127,7 @@ pm/__version__
            (let [step (pm/Slice)]
              (pm/sample 5000 :step step))))
 
-(vis.python/pyplot
+(pyplot/pyplot
  #(az/plot_trace idata :combined true))
-
 
 :bye
