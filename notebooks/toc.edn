@@ -36,6 +36,6 @@
   :title "Using PyMC from Clojure - DRAFT 🛠"
   :url "projects/stats/pymc/index.html"
   :source-path "projects/stats/pymc"
-  :tags [:pymc :stats :bayes :python]}
+  :tags [:pymc :stats :bayes :python :draft]}
 
  ]
