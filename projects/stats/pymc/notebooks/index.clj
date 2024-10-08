@@ -3,7 +3,8 @@
 ;; the probabilistic programming library PyMC
 ;; from Clojure.
 
-;; See the [Introductory Overview of PyMC](https://www.pymc.io/projects/docs/en/stable/learn/core_notebooks/pymc_overview.html).
+;; We follow the linear regression example from 
+;; the [Introductory Overview of PyMC](https://www.pymc.io/projects/docs/en/stable/learn/core_notebooks/pymc_overview.html).
 
 ;; ## Setup
 
@@ -42,9 +43,9 @@
 
 ;; Theme for ArViZ visualizations:
 
-;; ## Synthetic data
-
 (arviz.style/use "arviz-darkgrid")
+
+;; ## Synthetic data
 
 (def random-seed 8927)
 
@@ -54,6 +55,8 @@
   {:alpha 1
    :sigma 1
    :beta [1 2.5]})
+
+;; We will generate a dataset by the following recipe:
 
 (defn gen-dataset [{:keys [size random-seed
                            alpha sigma beta]}]
@@ -70,12 +73,14 @@
                                           (dtype/make-reader
                                            :float32 size (rand)))))))))
 
-
-
 (def dataset
   (gen-dataset (merge {:random-seed random-seed
                        :size dataset-size}
                       true-parameter-values)))
+
+(tc/head dataset)
+
+;; Let us visualize our dataset:
 
 (->> [:x1 :x2]
      (mapv (fn [x]
@@ -84,8 +89,11 @@
                   {:=x :x1}))))
      kind/fragment)
 
+;; ## Using PyMC
+
 pm/__version__
 
+;; Let us define a Bayesian model for our data:
 
 (def basic-model (pm/Model))
 
@@ -111,23 +119,29 @@ pm/__version__
                                 :sigma sigma
                                 :observed y)]))
 
+;; Now we can sample from the posterior: 
+
 (def idata
   (py/with [_ basic-model]
            (pm/sample)))
 
+;; Here is the resulting structure:
 
 (-> idata
     (py.- posterior)
     (py.- alpha)
     (py. sel :draw (python/slice 0 4)))
 
+;; Alternativelty, we could also use the Slice sampling algorithm
+;; instead of the default NUTS.
 
 (def slice-idata
   (py/with [_ basic-model]
            (let [step (pm/Slice)]
              (pm/sample 5000 :step step))))
 
+;; Let us plot our sampling using ArViZ:
+
 (pyplot/pyplot
  #(az/plot_trace idata :combined true))
 
-:bye
