@@ -8,7 +8,7 @@ Community-contributed tutorials for the emerging Clojure data stack.
 You can interact with the tutorials by cloning this project and starting a REPL in the relevant subfolders.
 All tutorials have a mandatory devcontainer configuration. This allows to isolate the "native dependencies",
 which are very common in Clojure Data Science approaches, from each other.
-It makes as well sure, that all tutorials are easy reproducible. (using devcontainer tools)
+It makes as well sure, that all tutorials are easy reproducible. (using any tools which supports devcontainer, for example VSCode)
 
 This project is part of the [SciCloj community](https://scicloj.github.io/docs/community/about/).
 
