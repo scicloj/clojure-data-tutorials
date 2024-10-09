@@ -1,9 +1,11 @@
+(load-string (slurp  "https://raw.githubusercontent.com/scicloj/clojure-data-tutorials/main/header.edn"))
+;; ---------------
 
 ;; This tutorial demonstrates using
 ;; the probabilistic programming library PyMC
 ;; from Clojure.
 
-;; We follow the linear regression example from 
+;; We follow the linear regression example from
 ;; the [Introductory Overview of PyMC](https://www.pymc.io/projects/docs/en/stable/learn/core_notebooks/pymc_overview.html).
 
 ;; ## Setup
@@ -33,7 +35,7 @@
                 '[numpy.random :as np.random]
                 '[pymc :as pm])
 
-;; Some convenience functions to access Python idioms: 
+;; Some convenience functions to access Python idioms:
 
 (defn brackets [obj entry]
   (py. obj __getitem__ entry))
@@ -119,7 +121,7 @@ pm/__version__
                                 :sigma sigma
                                 :observed y)]))
 
-;; Now we can sample from the posterior: 
+;; Now we can sample from the posterior:
 
 (def idata
   (py/with [_ basic-model]
@@ -148,4 +150,3 @@ slice-idata
 
 (pyplot/pyplot
  #(az/plot_trace idata :combined true))
-
