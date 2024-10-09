@@ -1,18 +1,20 @@
 name: Build tutorials page
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  - push
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  packages: write
+  
 jobs:
+
 
   render-tutorials:
 
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
     - uses: actions/checkout@v4
     
@@ -48,10 +50,14 @@ jobs:
                runCmd: clj notebooks/render.clj
                push: never
 
+    - name: render tutorial in projects/ml/sklearn-clj
+      uses: devcontainers/ci@v0.3
+      with:    
+               subFolder: projects/ml/sklearn-clj
+               runCmd: clj render.clj
+               push: never
+
     
-    - name: clean docs
-      run: |
-         rm -rf docs/*.*
 
     - name: combine all tutorials
       uses: tzafrirben/babashka-docker-action@v1.1
@@ -78,16 +84,26 @@ jobs:
       run: clojure notebooks/render_index.clj 
 
 
-    - name: check git status
-      run: |
-          date > generated.txt
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          ls docs/projects
-          git status
-
-
-    - name: push updated docs
-      uses: stefanzweifel/git-auto-commit-action@v5
-     
-                         
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
+    - name: Build with Jekyll
+      uses: actions/jekyll-build-pages@v1
+      with:
+         source: ./docs
+         destination: ./_site
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+    
+  deploy-pages:
+   environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+   runs-on: ubuntu-latest
+   # only run github-pages deployemnts on main, not on PRs for example
+   if: github.ref == 'refs/heads/main'
+   needs: render-tutorials
+   steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

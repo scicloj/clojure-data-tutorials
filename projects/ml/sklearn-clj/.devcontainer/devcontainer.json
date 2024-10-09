@@ -1,0 +1,35 @@
+{
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
+			"packages": "rlwrap"
+		},
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers-contrib/features/poetry:2": {},
+		 "ghcr.io/wxw-matt/devcontainer-features/command_runner:latest": {
+            //"command1": "bash < <(curl -s https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install)",
+            "command2": "bash < <(curl -s https://raw.githubusercontent.com/babashka/babashka/master/install)"
+                 }
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"betterthantomorrow.calva",
+				"ms-vscode.live-server",
+				"streetsidesoftware.code-spell-checker"
+			]
+		}
+	},
+
+	"postAttachCommand":
+	{ 
+	  "prepare": ["bash","-c", "-i", "source ./.devcontainer/setup.sh"]
+      
+
+	}
+}

@@ -1,7 +1,0 @@
-format:
-  html: {toc: true, toc-depth: 4, theme: cosmo}
-  revealjs: {theme: solarized, navigation-mode: vertical, transition: slide, background-transition: fade, incremental: true}
-project: {type: book}
-book:
-  title: Exploring ggplot
-  chapters: [index.qmd, using_clojisr.qmd, representing.qmd, comparing.qmd, study_session_20240225.qmd]
