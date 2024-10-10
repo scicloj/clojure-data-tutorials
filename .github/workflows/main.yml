@@ -19,44 +19,12 @@ jobs:
     - uses: actions/checkout@v4
     
     
-    - name: render tutorial in projects/noj
-      uses: devcontainers/ci@v0.3
-      with:    
-               subFolder: projects/noj
-               runCmd: clj notebooks/render.clj
-               push: never
+    - name: install devcontainer-cli
+      run:  npm install -g @devcontainers/cli
 
-
-    - name: render tutorial in projects/datavis/python/plotting
-      uses: devcontainers/ci@v0.3
-      with:    
-               subFolder: projects/datavis/python/plotting
-               runCmd: clj -Adev notebooks/render.clj
-               push: never
-
-               
-    - name: render tutorial in projects/datavis/ggplot
-      uses: devcontainers/ci@v0.3
-      with:    
-               subFolder: projects/datavis/ggplot
-               runCmd: clj -Adev notebooks/render.clj
-               push: never
-
-
-    - name: render tutorial in projects/ml/onnx
-      uses: devcontainers/ci@v0.3
-      with:    
-               subFolder: projects/ml/onnx
-               runCmd: clj notebooks/render.clj
-               push: never
-
-    - name: render tutorial in projects/ml/sklearn-clj
-      uses: devcontainers/ci@v0.3
-      with:    
-               subFolder: projects/ml/sklearn-clj
-               runCmd: clj render.clj
-               push: never
-
+    - name: install devcontainer-cli
+      run:  devcontainer -h
+      
     
 
     - name: combine all tutorials
