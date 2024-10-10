@@ -13,9 +13,14 @@
  (fn [[source-path folder cmd]]
    (let [workspace-folder (or folder source-path)]
      (when (some? cmd)
+       (shell "echo" (format "::group::{%s}" workspace-folder))
        (shell "devcontainer"  "up" "--workspace-folder" 
               workspace-folder)
        (apply shell "devcontainer"  "exec" "--workspace-folder" 
-              workspace-folder (str/split cmd #" ")))))
+              workspace-folder (str/split cmd #" "))
+       (shell "echo" "::endgroup::"))))
 
  commands)
+
+
+
