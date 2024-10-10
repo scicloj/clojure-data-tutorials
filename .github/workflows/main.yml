@@ -24,7 +24,11 @@ jobs:
 
     - name: install devcontainer-cli
       run:  devcontainer -h
-      
+
+    - name: run devcontainer build
+      run: |
+         devcontainer up --workspace-folder projects/noj
+         devcontainer exec --workspace-folder projects/noj clj notebooks/render.clj
     
 
     - name: combine all tutorials
