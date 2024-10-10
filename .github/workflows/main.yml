@@ -23,12 +23,9 @@ jobs:
       run:  npm install -g @devcontainers/cli
 
     - name: run devcontainer build
-      run: |
-         devcontainer up --workspace-folder projects/noj
-         devcontainer exec --workspace-folder projects/noj clj notebooks/render.clj
-
-         devcontainer up --workspace-folder projects/ml/sklearn-clj
-         devcontainer exec --workspace-folder projects/ml/sklearn-clj clj render.clj   
+      uses: tzafrirben/babashka-docker-action@v1.1
+      with:
+         bb_src: render_all.clj
 
     - name: combine all tutorials
       uses: tzafrirben/babashka-docker-action@v1.1

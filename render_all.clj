@@ -1,0 +1,21 @@
+#!/usr/bin/env bb
+(require '[babashka.process :refer [shell process exec sh]])
+
+(def commands
+  (->> "notebooks/toc.edn"
+       slurp
+       read-string
+       (map (juxt :source-path :folder :cmd))
+       (remove #(= % [nil nil]))))
+
+(println commands)
+(run!
+ (fn [[source-path folder cmd]]
+   (let [workspace-folder (or folder source-path)]
+     (when (some? cmd)
+       (shell "devcontainer"  "up" "--workspace-folder" 
+              workspace-folder)
+       (apply shell "devcontainer"  "exec" "--workspace-folder" 
+              workspace-folder (str/split cmd #" ")))))
+
+ commands)
