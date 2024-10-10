@@ -26,7 +26,9 @@ jobs:
       run: |
          devcontainer up --workspace-folder projects/noj
          devcontainer exec --workspace-folder projects/noj clj notebooks/render.clj
-    
+
+         devcontainer up --workspace-folder projects/ml/sklearn-clj
+         devcontainer exec --workspace-folder projects/ml/sklearn-clj clj render.clj   
 
     - name: combine all tutorials
       uses: tzafrirben/babashka-docker-action@v1.1
