@@ -22,15 +22,17 @@ jobs:
     - name: install devcontainer-cli
       run:  npm install -g @devcontainers/cli
 
-    - name: run devcontainer build
-      uses: tzafrirben/babashka-docker-action@v1.1
+    - name: Setup Babashka
+      uses: turtlequeue/setup-babashka@v1.7.0
       with:
-         bb_src: render_all.clj
+        babashka-version: 1.4.192
+
+
+    - name: render all tutorials
+      run: bb render_all.clj
 
     - name: combine all tutorials
-      uses: tzafrirben/babashka-docker-action@v1.1
-      with:
-         bb_src: make_docs.clj
+      run: bb make_docs.clj
 
 
     - name: Prepare java
