@@ -1,3 +1,5 @@
+[![Build tutorials page](https://github.com/behrica/clojure-data-tutorials/actions/workflows/main.yml/badge.svg)](https://github.com/behrica/clojure-data-tutorials/actions/workflows/main.yml)
+
 # The Clojure Data Tutorials project
 
 <img src="https://scicloj.github.io/sci-cloj-logo-transparent.png" alt="SciCloj logo" width="100" align="right"/>

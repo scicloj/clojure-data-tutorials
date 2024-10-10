@@ -5,6 +5,8 @@
   :title "Machine learning - DRAFT"
   :url "projects/noj/ml.html"
   :source-path "projects/noj/notebooks/ml.clj"
+  :folder "projects/noj"
+  :cmd "clj notebooks/render.clj"         
   :tags [:noj :ml :scicloj.ml :draft]}
 
  {
@@ -13,13 +15,16 @@
   :title "Exploring ggplot"
   :url "projects/datavis/ggplot/index.html"
   :source-path "projects/datavis/ggplot"
+  :cmd "clj -Adev notebooks/render.clj"         
   :tags [:noj :r :clojisr :interop :ggplot :datavis]
+
   }
  {:created "2024-07-24"
   :updated "2024-07-28"
   :title "Displaying Python Plots in Clojure"
   :url "projects/datavis/python/plotting/index.html"
   :source-path "projects/datavis/python/plotting/"
+  :cmd "clj -Adev notebooks/render.clj"
   :tags [:datavis :python]}
 
  {
@@ -28,6 +33,7 @@
   :title "Using ONNX ML models from Clojure"
   :url "projects/ml/onnx/index.html"
   :source-path "projects/ml/onnx"
+  :cmd "clj notebooks/render.clj"
   :tags [:onnx :ml]}
 
  {
@@ -36,6 +42,7 @@
   :title "Using PyMC from Clojure - DRAFT 🛠"
   :url "projects/stats/pymc/index.html"
   :source-path "projects/stats/pymc"
+  ;:cmd ""
   :tags [:pymc :stats :bayes :python :draft]}
 
   {:created "2024-09-07"
@@ -43,6 +50,7 @@
   :title "Using sklearn models from Clojure with sklearn-clj"
   :url "projects/ml/sklearn-clj/index.html"
   :source-path "projects/ml/sklearn-clj"
+  :cmd "clj render.clj"
   :tags [:onnx :ml]}
 
  ]
