@@ -42,7 +42,7 @@
   :title "Using PyMC from Clojure - DRAFT 🛠"
   :url "projects/stats/pymc/index.html"
   :source-path "projects/stats/pymc"
-  :cmd "clj notebooks/render.clj"
+  :cmd "clj -Adev notebooks/render.clj"
   :tags [:pymc :stats :bayes :python :draft]}
 
  {:created "2024-09-07"
