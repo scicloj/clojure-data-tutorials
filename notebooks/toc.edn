@@ -42,10 +42,10 @@
   :title "Using PyMC from Clojure - DRAFT 🛠"
   :url "projects/stats/pymc/index.html"
   :source-path "projects/stats/pymc"
-  ;:cmd ""
+  :cmd "clj -Adev notebooks/render.clj"
   :tags [:pymc :stats :bayes :python :draft]}
 
-  {:created "2024-09-07"
+ {:created "2024-09-07"
   :updated "2024-09-07"
   :title "Using sklearn models from Clojure with sklearn-clj"
   :url "projects/ml/sklearn-clj/index.html"
