@@ -16,7 +16,7 @@
             [tablecloth.api :as tc]
             [tablecloth.column.api :as tcc]
             [tech.v3.datatype :as dtype]
-            [scicloj.hanamicloth.v1.plotlycloth :as ploclo]
+            [scicloj.tableplot.v1.plotly :as plotly]
             [scicloj.kind-pyplot.v1.api :as pyplot]
             [scicloj.kindly.v4.kind :as kind]))
 
@@ -84,7 +84,7 @@
 (->> [:x1 :x2]
      (mapv (fn [x]
              (-> dataset
-                 (ploclo/layer-point
+                 (plotly/layer-point
                   {:=x :x1}))))
      kind/fragment)
 
