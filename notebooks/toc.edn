@@ -55,7 +55,7 @@
 
  {:created "2024-11-03"
   :updated "2024-11-03"
-  :title "Text classification with metamorh.ml and xgboost"
+  :title "Text classification with metamorph.ml and xgboost"
   :url "projects/ml/text-classification/index.html"
   :source-path "projects/ml/text-classification"
   :cmd "clj render.clj"
