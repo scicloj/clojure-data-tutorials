@@ -1,0 +1,26 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/scicloj/devcontainer-templates/tree/main/src/basecloj
+{
+	"name": "text classification",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"BASE_IMAGE": "temurin-21-tools-deps-jammy",
+			"USERNAME": "${localEnv:USER:vscode}"
+		}
+	},
+	"remoteUser": "${localEnv:USER:vscode}",
+	"containerUser": "${localEnv:USER:vscode}",
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}
+
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"betterthantomorrow.calva"
+			]
+		}
+	}
+}
