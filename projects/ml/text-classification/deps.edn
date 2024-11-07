@@ -1,11 +1,10 @@
-{:deps {scicloj.ml.xgboost {:git/url "https://github.com/scicloj/scicloj.ml.xgboost"
-                            :git/sha "db8af224d349db51e2cce0444d0caef2abc26f81"}
+{:deps {org.scicloj/scicloj.ml.smile {:mvn/version "7.4.2" :exclusions [scicloj/metamorph.ml]}
+        org.scicloj/scicloj.ml.xgboost {:mvn/version "6.2.0"}
 
         org.clojure/clojure {:mvn/version "1.12.0"}
         org.scicloj/clay {:mvn/version "2-alpha78"}
         scicloj/tablecloth {:mvn/version "7.029.2"}
         org.clojure/data.csv {:mvn/version "1.1.0"}
-        org.scicloj/metamorph.ml          {:git/url "https://github.com/scicloj/metamorph.ml"
-                                           :git/sha "6cd751f7c06dd2964a9ea108204f059ee29bb66c"}}
+        cheshire/cheshire {:mvn/version "5.13.0"}}
  :aliases {:dev {:jvm-opts ["-Djava.awt.headless=true"]}}
  }
