@@ -90,6 +90,8 @@
                       :sparse-column :tfidf
                       :seed 123
                       :num-class 2
+                      :eta 0.4
+                      :validate_parameters true
                       :n-sparse-columns n-sparse-columns}))
 (def raw-prediction
   (ml/predict test-ds model))
