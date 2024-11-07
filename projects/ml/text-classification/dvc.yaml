@@ -4,3 +4,6 @@ stages:
 
 metrics:
   - metrics.json
+
+params:
+  - params.json  
