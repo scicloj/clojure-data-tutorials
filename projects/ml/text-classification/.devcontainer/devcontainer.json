@@ -20,7 +20,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"betterthantomorrow.calva"
+				"betterthantomorrow.calva",
+				"iterative.dvc"
 			]
 		}
 	}
