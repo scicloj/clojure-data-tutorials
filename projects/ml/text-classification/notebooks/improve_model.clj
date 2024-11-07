@@ -46,8 +46,7 @@
   (text/->tidy-text (csv/read-csv (io/reader "train.csv"))
                     seq
                     line-parse-fn
-                    ;nlp/default-tokenize
-                    tokenize-fn
+                    nlp/default-tokenize
                     :skip-lines 1))
 
 
