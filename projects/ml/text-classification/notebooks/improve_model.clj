@@ -85,15 +85,17 @@
 (def n-sparse-columns (inc (tcc/reduce-max (train-ds :token-idx))))
 
 
+
 (def model
-  (ml/train train-ds {:model-type :xgboost/classification
-                      :sparse-column :tfidf
-                      :seed 123
-                      :num-class 2
-                      :eta 0.1
-                      :gamma 1
-                      :validate_parameters true
-                      :n-sparse-columns n-sparse-columns}))
+  (ml/train train-ds 
+            (merge (:predict (json/parse-stream (io/reader "params.json") keyword))
+                   {:model-type :xgboost/classification
+                    :sparse-column :tfidf
+                    :seed 123
+                    :num-class 2
+                    :validate_parameters true
+                    :n-sparse-columns n-sparse-columns})
+            ))
 (def raw-prediction
   (ml/predict test-ds model))
 
