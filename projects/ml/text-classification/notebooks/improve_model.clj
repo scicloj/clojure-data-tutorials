@@ -16,14 +16,12 @@
    [scicloj.metamorph.ml.gridsearch :as grid]
    [scicloj.ml.smile.nlp :as nlp]
    [scicloj.ml.xgboost]
-   [ham-fisted.reduce :as hf-reduce]
-
-[tech.v3.dataset.reductions :as ds-reduce]   
    [tablecloth.api :as tc]
    [tablecloth.column.api :as tcc]
    [tech.v3.dataset.modelling :as ds-mod] ;[scicloj.clay.v2.api :as clay]
-   
+
    [scicloj.metamorph.ml.gridsearch :as ml-gs]))
+
 
 
 
@@ -61,12 +59,7 @@
 
 
 (defn- line-parse-fn [line]
-  [(str 
-    (nth line 1)
-    " - "
-    (nth line 2)
-    " - "
-    (nth line 3))
+  [(nth line 3)
    (Integer/parseInt (nth line 4))])
 
 (def tidy-train
@@ -76,43 +69,26 @@
                     tokenize-fn
                     :skip-lines 1))
 
-
+(def
+  train--token-lookup-table
+  (-> tidy-train :token-lookup-table))
 
 (def tidy-train-ds
   (-> tidy-train :datasets first))
 
-
+(-> tidy-train-ds :meta frequencies)
 (def tfidf
   (->
    tidy-train-ds
    (text/->tfidf)
    (tc/rename-columns {:meta :label})))
 
-;(-> tfidf :document distinct count)
-;;=> 7613
 
-;; (def more-then-x
-;;   (->
-;;    (ds-reduce/group-by-column-agg 
-;;     :token-idx
-;;     {:c (ds-reduce/row-count)}
-;;     tfidf
-;;     )
-;;    (tc/select-rows (fn [row] (or (< (:c row) 5000)
-;;                                  (> (:c row) 20))))
-;;    (tc/order-by :c)
-;;    (tc/unique-by :token-idx)
-;;    ))
-
-;; (def tfidf
-;;   (-> more-then-x
-;;       (tc/left-join tfidf :token-idx)
-;;       (tc/drop-missing)))
 
 (def for-split-calculations
-  (tc/dataset {:document (-> tfidf :document distinct)}))
+  (tc/dataset {:document (-> tidy-train-ds :document distinct)}))
 
-(def splits (tc/split->seq for-split-calculations :holdout {:seed 123}))
+(def splits (tc/split->seq for-split-calculations))
 
 (def train-ds
   (->
@@ -120,7 +96,8 @@
     (-> splits first :train)
     tfidf
     :document)
-   (ds-mod/set-inference-target [:label])))
+   (ds-mod/set-inference-target [:label])
+   (tc/select-columns [ :document :tfidf :token-idx :label])))
 
 (def test-ds
   (tc/left-join
@@ -168,9 +145,45 @@
 
   test-predicted-labels))
 
-(println :acc acc)
 (spit "metrics.json"
       (json/encode {:acc acc}))
+
+
+
+
+(comment
+
+  (let [tfidf-test-ds
+        (->
+         (text/->tidy-text (csv/read-csv (io/reader "test.csv"))
+                           seq
+                           (fn [line]
+                             [(nth line 3) {:id (first line)}])
+                           tokenize-fn
+                           :skip-lines 1
+                           :new-token-behaviour :as-unknown
+                           :token->index-map train--token-lookup-table)
+         :datasets
+         first
+         text/->tfidf
+         (tc/select-columns [:document :token-idx :tfidf :meta])
+   ;; the :id for Kaggle
+         (tc/add-column
+          :id (fn [df] (map
+                        #(:id %)
+                        (:meta df))))
+         (tc/drop-columns [:meta]))]
+
+    (->
+     (ml/predict tfidf-test-ds model)
+     (tc/right-join tfidf-test-ds :document)
+     (tc/unique-by [:id :label])
+     (tc/select-columns [:id :label])
+     (tc/update-columns {:label (partial map int)})
+     (tc/rename-columns {:label :target})
+     (tc/write-csv! "submission.csv"))))
+
+
 
 (comment
   (defn queue-exp
