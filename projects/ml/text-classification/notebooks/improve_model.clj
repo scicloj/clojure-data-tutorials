@@ -202,7 +202,7 @@
 
   (->> (ml/hyperparameters :xgboost/classification)
        (grid/sobol-gridsearch)
-       (take 10)
+       (take 50)
        (queue-exp)
        )
   
