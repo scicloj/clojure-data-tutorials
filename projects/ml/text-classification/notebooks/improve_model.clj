@@ -41,25 +41,27 @@
 (def stemmer (nlp/resolve-stemmer {}))
 
 (defn stem [s]
-  ( .stem stemmer s))
+  (.stem stemmer s))
 
 (defn tokenize-fn [text]
-  (map (fn [token] 
+  (map (fn [token]
          (let [lower-case (-> token str/lower-case)
-               non-stop-word 
-               (if ( contains? stop-words lower-case)
+               non-stop-word
+               (if (contains? stop-words lower-case)
                  ""
-                 lower-case
-                 )
-               ]
-           
+                 lower-case)]
+
            (-> non-stop-word stem)))
-       (str/split text #"\W+"))
-  )
+       (str/split text #"\W+")))
 
 
 (defn- line-parse-fn [line]
-  [(nth line 3)
+  [(str
+    (nth line 1)
+    " "
+    (nth line 2)
+    " "
+    (nth line 3))
    (Integer/parseInt (nth line 4))])
 
 (def tidy-train
@@ -97,7 +99,7 @@
     tfidf
     :document)
    (ds-mod/set-inference-target [:label])
-   (tc/select-columns [ :document :tfidf :token-idx :label])))
+   (tc/select-columns [:document :tfidf :token-idx :label])))
 
 (def test-ds
   (tc/left-join
@@ -110,15 +112,15 @@
 
 
 (def model
-  (ml/train train-ds 
+  (ml/train train-ds
             (merge (:predict (json/parse-stream (io/reader "params.json") keyword))
                    {:model-type :xgboost/classification
                     :sparse-column :tfidf
                     :seed 123
                     :num-class 2
+                    :verbosity 2
                     :validate_parameters true
-                    :n-sparse-columns n-sparse-columns})
-            ))
+                    :n-sparse-columns n-sparse-columns})))
 (def raw-prediction
   (ml/predict test-ds model))
 
@@ -133,55 +135,54 @@
 
 (def test-predicted-labels
   (mapv int
-       (-> raw-prediction
-           (tc/order-by :document)
-           :label
-           seq
-           )))
+        (-> raw-prediction
+            (tc/order-by :document)
+            :label
+            seq)))
 
 (def acc
- (loss/classification-accuracy
-  test-true-labels
+  (loss/classification-accuracy
+   test-true-labels
 
-  test-predicted-labels))
+   test-predicted-labels))
 
+(println :acc acc)
 (spit "metrics.json"
       (json/encode {:acc acc}))
 
 
 
 
-(comment
 
-  (let [tfidf-test-ds
-        (->
-         (text/->tidy-text (csv/read-csv (io/reader "test.csv"))
-                           seq
-                           (fn [line]
-                             [(nth line 3) {:id (first line)}])
-                           tokenize-fn
-                           :skip-lines 1
-                           :new-token-behaviour :as-unknown
-                           :token->index-map train--token-lookup-table)
-         :datasets
-         first
-         text/->tfidf
-         (tc/select-columns [:document :token-idx :tfidf :meta])
+(let [tfidf-test-ds
+      (->
+       (text/->tidy-text (csv/read-csv (io/reader "test.csv"))
+                         seq
+                         (fn [line]
+                           [(nth line 3) {:id (first line)}])
+                         tokenize-fn
+                         :skip-lines 1
+                         :new-token-behaviour :as-unknown
+                         :token->index-map train--token-lookup-table)
+       :datasets
+       first
+       text/->tfidf
+       (tc/select-columns [:document :token-idx :tfidf :meta])
    ;; the :id for Kaggle
-         (tc/add-column
-          :id (fn [df] (map
-                        #(:id %)
-                        (:meta df))))
-         (tc/drop-columns [:meta]))]
+       (tc/add-column
+        :id (fn [df] (map
+                      #(:id %)
+                      (:meta df))))
+       (tc/drop-columns [:meta]))]
 
-    (->
-     (ml/predict tfidf-test-ds model)
-     (tc/right-join tfidf-test-ds :document)
-     (tc/unique-by [:id :label])
-     (tc/select-columns [:id :label])
-     (tc/update-columns {:label (partial map int)})
-     (tc/rename-columns {:label :target})
-     (tc/write-csv! "submission.csv"))))
+  (->
+   (ml/predict tfidf-test-ds model)
+   (tc/right-join tfidf-test-ds :document)
+   (tc/unique-by [:id :label])
+   (tc/select-columns [:id :label])
+   (tc/update-columns {:label (partial map int)})
+   (tc/rename-columns {:label :target})
+   (tc/write-csv! "submission.csv")))
 
 
 
@@ -203,9 +204,6 @@
   (->> (ml/hyperparameters :xgboost/classification)
        (grid/sobol-gridsearch)
        (take 50)
-       (queue-exp)
-       )
-  
-  )
+       (queue-exp)))
 
   

@@ -1,1 +1,10 @@
-{"subsample":1.0,"scale-pos-weight":0.944,"max-depth":6,"lambda":0.12379310344827585,"gamma":0.6669999999999999,"eta":0.7777777777777778,"round":5,"alpha":0.21689655172413794}
+{"subsample":1.0,
+"max-depth":200,
+"lambda":0.1,
+"gamma":1,
+"eta":0.01,
+"round":1000,
+"alpha":0.1}
+
+
+
