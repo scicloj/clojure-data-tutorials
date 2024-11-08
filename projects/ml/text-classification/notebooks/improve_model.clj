@@ -16,12 +16,14 @@
    [scicloj.metamorph.ml.gridsearch :as grid]
    [scicloj.ml.smile.nlp :as nlp]
    [scicloj.ml.xgboost]
+   [ham-fisted.reduce :as hf-reduce]
+
+[tech.v3.dataset.reductions :as ds-reduce]   
    [tablecloth.api :as tc]
    [tablecloth.column.api :as tcc]
    [tech.v3.dataset.modelling :as ds-mod] ;[scicloj.clay.v2.api :as clay]
-
+   
    [scicloj.metamorph.ml.gridsearch :as ml-gs]))
-
 
 
 
@@ -59,7 +61,12 @@
 
 
 (defn- line-parse-fn [line]
-  [(nth line 3)
+  [(str 
+    (nth line 1)
+    " - "
+    (nth line 2)
+    " - "
+    (nth line 3))
    (Integer/parseInt (nth line 4))])
 
 (def tidy-train
@@ -74,19 +81,38 @@
 (def tidy-train-ds
   (-> tidy-train :datasets first))
 
-(-> tidy-train-ds :meta frequencies)
+
 (def tfidf
   (->
    tidy-train-ds
    (text/->tfidf)
    (tc/rename-columns {:meta :label})))
 
+;(-> tfidf :document distinct count)
+;;=> 7613
 
+;; (def more-then-x
+;;   (->
+;;    (ds-reduce/group-by-column-agg 
+;;     :token-idx
+;;     {:c (ds-reduce/row-count)}
+;;     tfidf
+;;     )
+;;    (tc/select-rows (fn [row] (or (< (:c row) 5000)
+;;                                  (> (:c row) 20))))
+;;    (tc/order-by :c)
+;;    (tc/unique-by :token-idx)
+;;    ))
+
+;; (def tfidf
+;;   (-> more-then-x
+;;       (tc/left-join tfidf :token-idx)
+;;       (tc/drop-missing)))
 
 (def for-split-calculations
-  (tc/dataset {:document (-> tidy-train-ds :document distinct)}))
+  (tc/dataset {:document (-> tfidf :document distinct)}))
 
-(def splits (tc/split->seq for-split-calculations))
+(def splits (tc/split->seq for-split-calculations :holdout {:seed 123}))
 
 (def train-ds
   (->
@@ -142,6 +168,7 @@
 
   test-predicted-labels))
 
+(println :acc acc)
 (spit "metrics.json"
       (json/encode {:acc acc}))
 
