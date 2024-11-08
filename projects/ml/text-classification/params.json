@@ -1,10 +1,1 @@
-{"predict": 
-{"eta": 0.3, 
-"gamma": 0,
-"subsample": 1,
-"lambda": 1,
-"alpha":0,
-"max_depth":3,
-"min_child_weight":5
-}
-}
+{"subsample":1.0,"scale-pos-weight":0.7,"max-depth":7,"lambda":0.061724137931034484,"gamma":0.33399999999999996,"eta":0.5555555555555556,"round":15,"alpha":0.061724137931034484}

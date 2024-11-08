@@ -1,24 +1,30 @@
-
 (load-string (slurp  "https://raw.githubusercontent.com/scicloj/clojure-data-tutorials/main/header.edn"))
 
 ^:kindly/hide-code
 (ns improve-model
   (:require
+   [cheshire.core :as json]
    [clojure.data.csv :as csv]
    [clojure.java.io :as io]
+   [clojure.java.shell :as sh]
+   [clojure.pprint :as pprint]
    [clojure.string :as str]
+   [scicloj.metamorph.ml :as ml]
+   [scicloj.metamorph.ml.classification]
+   [scicloj.metamorph.ml.loss :as loss]
    [scicloj.metamorph.ml.text :as text]
+   [scicloj.metamorph.ml.gridsearch :as grid]
+   [scicloj.ml.smile.nlp :as nlp]
+   [scicloj.ml.xgboost]
    [tablecloth.api :as tc]
    [tablecloth.column.api :as tcc]
-   [scicloj.metamorph.ml :as ml]
-   [scicloj.metamorph.ml.loss :as loss]
-   [tech.v3.dataset.modelling :as ds-mod]
-   ;[scicloj.clay.v2.api :as clay]
-   [scicloj.ml.xgboost]
-   [scicloj.metamorph.ml.classification]
-   [scicloj.ml.smile.nlp :as nlp]
-   [cheshire.core :as json]
-   ))
+   [tech.v3.dataset.modelling :as ds-mod] ;[scicloj.clay.v2.api :as clay]
+
+   [scicloj.metamorph.ml.gridsearch :as ml-gs]))
+
+
+
+
 
 (comment
   (require '[scicloj.clay.v2.api :as clay])
@@ -26,16 +32,30 @@
   (clay/make! {:source-path "notebooks/improve-model.clj"
                :show false}))
 
+(def stop-words
+  (into #{}
+        (iterator-seq
+         (.iterator
+          smile.nlp.dictionary.EnglishStopWords/COMPREHENSIVE))))
+
 (def stemmer (nlp/resolve-stemmer {}))
 
 (defn stem [s]
   ( .stem stemmer s))
 
 (defn tokenize-fn [text]
-  (map (fn [token] (-> token str/lower-case stem))
+  (map (fn [token] 
+         (let [lower-case (-> token str/lower-case)
+               non-stop-word 
+               (if ( contains? stop-words lower-case)
+                 ""
+                 lower-case
+                 )
+               ]
+           
+           (-> non-stop-word stem)))
        (str/split text #"\W+"))
   )
-
 
 
 (defn- line-parse-fn [line]
@@ -46,7 +66,7 @@
   (text/->tidy-text (csv/read-csv (io/reader "train.csv"))
                     seq
                     line-parse-fn
-                    nlp/default-tokenize
+                    tokenize-fn
                     :skip-lines 1))
 
 
@@ -125,6 +145,27 @@
 (spit "metrics.json"
       (json/encode {:acc acc}))
 
+(comment
+  (defn queue-exp
+    "Queue a number of experiments with dvc.
+    The provided `params` (list of maps) is converted to yaml and
+    written to `params.yaml` and a new job is queued using it.
+  
+    The list of params can for example be created from [[scicloj.metamorph.ml.gridsearch/sobol-gridsearch]]
+    "
+    [params]
+    (run!
+     #(do (spit "params.json" (json/generate-string %))
+          (pprint/pprint
+           (sh/sh "dvc" "exp" "run" "--queue")))
+     params))
 
+  (->> (ml/hyperparameters :xgboost/classification)
+       (grid/sobol-gridsearch)
+       (take 10)
+       (queue-exp)
+       )
+  
+  )
 
   
