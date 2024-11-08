@@ -44,15 +44,22 @@
   (.stem stemmer s))
 
 (defn tokenize-fn [text]
-  (map (fn [token]
-         (let [lower-case (-> token str/lower-case)
-               non-stop-word
-               (if (contains? stop-words lower-case)
-                 ""
-                 lower-case)]
+  (let [cleaned-text
+        (str/replace text
+                     #"(http:|https:)+[^\s]+[\w]" "")]
+    (->> 
+     (str/split cleaned-text #"\W+")
+     (map (fn [token]
+            (let [lower-case (-> token str/lower-case)
+                  non-stop-word
+                  (if (contains? stop-words lower-case)
+                    ""
+                    lower-case)]
 
-           (-> non-stop-word stem)))
-       (str/split text #"\W+")))
+              (-> non-stop-word stem)))
+          )
+     (remove empty?))))
+
 
 
 (defn- line-parse-fn [line]
@@ -78,7 +85,7 @@
 (def tidy-train-ds
   (-> tidy-train :datasets first))
 
-(-> tidy-train-ds :meta frequencies)
+
 (def tfidf
   (->
    tidy-train-ds
