@@ -10,3 +10,4 @@ classes
 .vscode
 docs/
 
+projects/ml/text-classification/submission.csv

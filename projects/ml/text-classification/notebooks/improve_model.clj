@@ -18,8 +18,9 @@
    [scicloj.ml.xgboost]
    [tablecloth.api :as tc]
    [tablecloth.column.api :as tcc]
+   [taoensso.nippy :as nippy]
+   [tech.v3.dataset :as ds]
    [tech.v3.dataset.modelling :as ds-mod] ;[scicloj.clay.v2.api :as clay]
-
    [scicloj.metamorph.ml.gridsearch :as ml-gs]))
 
 
@@ -45,9 +46,8 @@
 
 (defn tokenize-fn [text]
   (let [cleaned-text
-        (str/replace text
-                     #"(http:|https:)+[^\s]+[\w]" "")]
-    (->> 
+        (str/replace text #"(http:|https:)+[^\s]+[\w]" "")]
+    (->>
      (str/split cleaned-text #"\W+")
      (map (fn [token]
             (let [lower-case (-> token str/lower-case)
@@ -55,12 +55,8 @@
                   (if (contains? stop-words lower-case)
                     ""
                     lower-case)]
-
-              (-> non-stop-word stem)))
-          )
+              (-> non-stop-word stem))))
      (remove empty?))))
-
-
 
 (defn- line-parse-fn [line]
   [(str
@@ -78,10 +74,6 @@
                     tokenize-fn
                     :skip-lines 1))
 
-(def
-  train--token-lookup-table
-  (-> tidy-train :token-lookup-table))
-
 (def tidy-train-ds
   (-> tidy-train :datasets first))
 
@@ -97,7 +89,8 @@
 (def for-split-calculations
   (tc/dataset {:document (-> tidy-train-ds :document distinct)}))
 
-(def splits (tc/split->seq for-split-calculations))
+(def splits (tc/split->seq for-split-calculations :holdout {:seed 123}))
+
 
 (def train-ds
   (->
@@ -106,31 +99,19 @@
     tfidf
     :document)
    (ds-mod/set-inference-target [:label])
-   (tc/select-columns [:document :tfidf :token-idx :label])))
+   (tc/select-columns [:document :tfidf :token-idx :label])
+   (tc/order-by [:document :token-idx])
+   (tc/clone)))
+
+
 
 (def test-ds
-  (tc/left-join
-   (-> splits first :test)
-   tfidf
-   :document))
-
-(def n-sparse-columns (inc (tcc/reduce-max (train-ds :token-idx))))
-
-
-
-(def model
-  (ml/train train-ds
-            (merge (:predict (json/parse-stream (io/reader "params.json") keyword))
-                   {:model-type :xgboost/classification
-                    :sparse-column :tfidf
-                    :seed 123
-                    :num-class 2
-                    :verbosity 2
-                    :validate_parameters true
-                    :n-sparse-columns n-sparse-columns})))
-(def raw-prediction
-  (ml/predict test-ds model))
-
+  (->
+   (tc/left-join
+    (-> splits first :test)
+    tfidf
+    :document)
+   (tc/clone)))
 
 (def test-true-labels
   (-> test-ds
@@ -140,56 +121,95 @@
       :label
       vec))
 
-(def test-predicted-labels
-  (mapv int
-        (-> raw-prediction
-            (tc/order-by :document)
-            :label
-            seq)))
+(defn dissoc-in
+  [m [k & knext :as ks]]
+  (cond
+    (and knext
+         (contains?
+          (get-in m (butlast ks))
+          (last ks))) (update-in m (butlast ks) dissoc (last ks))
+    (not knext) (dissoc m k)
+    :else m))
 
-(def acc
-  (loss/classification-accuracy
-   test-true-labels
+(defn- score [opts train-ds test-ds test-true-labels]
+  (let [
+        n-sparse-columns (inc (tcc/reduce-max (train-ds :token-idx)))
 
-   test-predicted-labels))
+        model-opts
 
-(println :acc acc)
-(spit "metrics.json"
-      (json/encode {:acc acc}))
+        (merge opts
+               {:model-type :xgboost/classification
+                :sparse-column :tfidf
+                :seed 123
+                :num-class 2
+                :verbosity 2
+                :validate_parameters true
+                :n-sparse-columns n-sparse-columns})
+        
+        model 
+        (->
+         (ml/train train-ds model-opts)
+         (dissoc-in [:model-wrapper :id]))
+        raw-prediction (ml/predict test-ds model)
+        test-predicted-labels
+        (mapv int
+              (-> raw-prediction
+                  (tc/order-by :document)
+                  :label
+                  seq))
+
+        acc
+        (loss/classification-accuracy
+         test-true-labels
+         test-predicted-labels)]
+     (println :acc acc)
+     {:opts model-opts
+      :acc acc}))
+
+(def results
+  (->> (ml/hyperparameters :xgboost/classification)
+       (grid/sobol-gridsearch)
+       (take 5)
+       (map #(score % train-ds test-ds test-true-labels))
+       (doall)))
 
 
 
 
 
-(let [tfidf-test-ds
-      (->
-       (text/->tidy-text (csv/read-csv (io/reader "test.csv"))
-                         seq
-                         (fn [line]
-                           [(nth line 3) {:id (first line)}])
-                         tokenize-fn
-                         :skip-lines 1
-                         :new-token-behaviour :as-unknown
-                         :token->index-map train--token-lookup-table)
-       :datasets
-       first
-       text/->tfidf
-       (tc/select-columns [:document :token-idx :tfidf :meta])
-   ;; the :id for Kaggle
-       (tc/add-column
-        :id (fn [df] (map
-                      #(:id %)
-                      (:meta df))))
-       (tc/drop-columns [:meta]))]
+;; (spit "metrics.json"
+;;       (json/encode {:acc acc}))
 
-  (->
-   (ml/predict tfidf-test-ds model)
-   (tc/right-join tfidf-test-ds :document)
-   (tc/unique-by [:id :label])
-   (tc/select-columns [:id :label])
-   (tc/update-columns {:label (partial map int)})
-   (tc/rename-columns {:label :target})
-   (tc/write-csv! "submission.csv")))
+
+;; (let [tfidf-test-ds
+;;       (->
+;;        (text/->tidy-text (csv/read-csv (io/reader "test.csv"))
+;;                          seq
+;;                          (fn [line]
+;;                            [(nth line 3) {:id (first line)}])
+;;                          tokenize-fn
+;;                          :skip-lines 1
+;;                          :new-token-behaviour :as-unknown
+;;                          :token->index-map train--token-lookup-table)
+;;        :datasets
+;;        first
+;;        text/->tfidf
+;;        (tc/select-columns [:document :token-idx :tfidf :meta])
+;;    ;; the :id for Kaggle
+;;        (tc/add-column
+;;         :id (fn [df] (map
+;;                       #(:id %)
+;;                       (:meta df))))
+;;        (tc/drop-columns [:meta]))]
+
+;;   (->
+;;    (ml/predict tfidf-test-ds model)
+;;    (tc/right-join tfidf-test-ds :document)
+;;    (tc/unique-by [:id :label])
+;;    (tc/select-columns [:id :label])
+;;    (tc/update-columns {:label (partial map int)})
+;;    (tc/rename-columns {:label :target})
+;;    (tc/write-csv! "submission.csv")))
 
 
 
@@ -213,4 +233,42 @@
        (take 50)
        (queue-exp)))
 
-  
+
+
+
+(comment
+
+
+
+
+  (k/exists? store "hello" {:sync? true})
+
+  (hash tidy-train)
+  ;;=> 1006577141
+
+  (hash train-ds)
+  ;;=> 866734393
+
+  (hash [1.0 1.1])
+  ;;=> -430348069
+
+  (hash [1.123456 1.1234567])
+
+  (def x
+    (time
+     (ml-cache/caching-train store train-ds opts)))
+
+  (def x
+    (time
+     (def model
+       (ml/train train-ds opts))))
+
+  (time
+   (let [bytes (nippy/freeze model)
+         model-2 (nippy/thaw bytes)]
+     {:hash
+      (hash
+       {:train-ds train-ds
+        :options opts})
+      :bytes bytes
+      :model model-2})))
