@@ -28,6 +28,8 @@ jobs:
         babashka-version: 1.4.192
 
     - name: debug key
+      env:
+        OPEN_AI_KEY: ${{secrets.OPEN_AI_KEY}}
       run: echo $OPEN_AI_KEY
 
     - name: render all tutorials
