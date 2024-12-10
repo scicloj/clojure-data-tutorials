@@ -33,7 +33,7 @@ jobs:
     - name: render all tutorials
       run: bb render_all.clj
       env:
-        OPEN_AI_KEY: ${{OPEN_AI_KEY}}
+        OPEN_AI_KEY: ${{secrets.OPEN_AI_KEY}}
 
 
     - name: combine all tutorials
