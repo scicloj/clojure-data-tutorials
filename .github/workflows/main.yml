@@ -27,9 +27,14 @@ jobs:
       with:
         babashka-version: 1.4.192
 
+    - name: debug key
+      run: echo $OPEN_AI_KEY
 
     - name: render all tutorials
       run: bb render_all.clj
+      env:
+        OPEN_AI_KEY: ${{OPEN_AI_KEY}}
+
 
     - name: combine all tutorials
       run: bb make_docs.clj
