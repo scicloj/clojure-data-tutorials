@@ -1,0 +1,10 @@
+{"subsample":1.0,
+"max-depth":200,
+"lambda":0.1,
+"gamma":1,
+"eta":0.01,
+"round":1000,
+"alpha":0.1}
+
+
+

@@ -1,0 +1,9 @@
+stages:
+  predict:
+    cmd: clj notebooks/improve_model.clj
+
+metrics:
+  - metrics.json
+
+params:
+  - params.json  

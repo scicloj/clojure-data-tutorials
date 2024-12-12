@@ -1,0 +1,4 @@
+schema: '2.0'
+stages:
+  predict:
+    cmd: clj notebooks/improve_model.clj
