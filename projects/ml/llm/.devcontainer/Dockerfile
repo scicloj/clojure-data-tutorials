@@ -29,4 +29,4 @@ clojure -Ttools install-latest :lib io.github.seancorfield/deps-new :as new && \
 clojure -Ttools list
 
 RUN sudo apt-get update && \
-    sudo apt-get install -y lsb-release  maven apt-get install libxrender1 libxtst6 libxi6
+    sudo apt-get install -y lsb-release  maven libxrender1 libxtst6 libxi6
