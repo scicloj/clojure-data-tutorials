@@ -1,4 +1,4 @@
-[![Build tutorials page](https://github.com/behrica/clojure-data-tutorials/actions/workflows/main.yml/badge.svg)](https://github.com/behrica/clojure-data-tutorials/actions/workflows/main.yml)
+[![Build tutorials page](https://github.com/scicloj/clojure-data-tutorials/actions/workflows/main.yml/badge.svg)](https://github.com/scicloj/clojure-data-tutorials/actions/workflows/main.yml)
 
 # The Clojure Data Tutorials project
 
