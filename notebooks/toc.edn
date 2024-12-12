@@ -61,4 +61,11 @@
   :cmd "clj render.clj"
   :tags [:nlp :ml]}
 
+ {:created "2024-12-12"
+  :updated "2024-12-12"
+  :title "Using LLMs from Clojure"
+  :url "projects/ml/llm/index.html"
+  :source-path "projects/ml/llm"
+  :cmd "clj render.c"
+  :tags [:nlp :ml]}
  ]
