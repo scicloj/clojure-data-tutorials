@@ -12,8 +12,8 @@
 
 
 ;; # Simple RAG (Retrieval-Augmented Generation) System
-;; This is a Clojure / langchain4j adaption of 
-;; https://github.com/NirDiamant/RAG_Techniques/blob/main/all_rag_techniques/simple_rag.ipynb
+;; This is a Clojure / langchain4j adaption of a
+;; (simple_rag)[https://github.com/NirDiamant/RAG_Techniques/blob/main/all_rag_techniques/simple_rag.ipynb]
 
 ;; ## Overview
 ;; This code implements a basic Retrieval-Augmented Generation (RAG) system for processing and 
@@ -61,12 +61,16 @@
 ;;Flexibility: Easy to adjust parameters like chunk size and number of retrieved results.
 
 ;;## Conclusion
-;;This simple RAG system provides a solid foundation for building more complex information retrieval and question-answering systems. By encoding document content into a searchable vector store, it enables efficient retrieval of relevant information in response to queries. This approach is particularly useful for applications requiring quick access to specific information within 
+;;This simple RAG system provides a solid foundation for building more complex information retrieval and question-answering systems. 
+;;
+;;By encoding document content into a searchable vector store, it enables efficient retrieval of relevant information in response to queries. 
+;;
+;;This approach is particularly useful for applications requiring quick access to specific information within 
 ;;large documents or document collections.
 
 ;; # Implementation
 
-;; helper to replace abs by space
+;; A helper to replace tabs by space:
 (defn replace-t-with-space [list-of-documents]
   (map
    (fn [text-segment]
@@ -76,25 +80,26 @@
    list-of-documents))
 
 
-;; convert PDF to text document
+;; Convert PDF to text document:
 (def document (.parse (ApachePdfBoxDocumentParser.) (io/input-stream "Understanding_Climate_Change.pdf")))
 
-;; split document into chunks of max 1000 chars and overlaping of 200
+;; Split document into chunks of max 1000 chars and overlaping of 200:
 (def texts
   (.split 
    (DocumentSplitters/recursive 1000 200)
    document))
-;; clean textx
+;; Clean texts:
 (def cleaned-texts (replace-t-with-space texts))
 
+;; Create embedding for clean texts:
 (def embedding-model (AllMiniLmL6V2EmbeddingModel.))
 (def embedding-store (InMemoryEmbeddingStore.))
 
-;; create embedding for clean texts
+
 (def embeddings
   (.embedAll embedding-model cleaned-texts))
 
-;; add embeddings to vector store
+;; Add all embeddings to vector store:
 (run!
     (fn [ [text-segment embedding]]
       (.add embedding-store embedding text-segment))
@@ -103,15 +108,15 @@
       cleaned-texts
       (.content embeddings)))
 
-;; encode retriever
+;; Encode the retriever text:
 (def retriever 
   (.content (.embed embedding-model
                     "What is the main cause of climate change?")))
 
-;; find top 5 relevant texts
+;; Find top 5 relevant texts:
 (def relevant (.findRelevant embedding-store retriever 5))
 
-;; put 5 results in table
+;; Put 5 results in table:
 (tc/dataset
  (map
   (fn [a-relevant]

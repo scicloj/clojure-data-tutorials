@@ -7,10 +7,10 @@
    [dev.langchain4j.store.embedding.inmemory InMemoryEmbeddingStore]))
 
 ;; # Use a vectorstore from langchain4j
-;; In thios example we will create embeddings for some
-;; phansaty food items, and find teh closest one to a query.
+;; In this example we will create embeddings for some
+;; fantasy food items, and find the closest one to a query sentence.
 
-;; Create the data, so a list of 1000 food descriptions
+;; Firt wereate the data, so a list of 1000 food descriptions
 
 
 (def food-items  
@@ -47,7 +47,7 @@
    "that brings comfort and joy" "which excites the palate"  
    "that enchants every taste bud" "which is pure indulgence"])  
   
-;; Generate 1000 unique descriptions as a dataset  
+;; Generate 1000 unique descriptions as a dataset:  
 (def food-descriptions
   (tc/dataset {:food-description
                (->>
@@ -64,12 +64,12 @@
                 (take 1000))}))  
 
 ;; Now we create the embedding store, which is able to calculate vector distances
-;; (fast)
+;; (fast).
 (def embedding-store (InMemoryEmbeddingStore.))
-;; Create an instance of the embedding model, which can calculate an emebdiing for a piece of text
+;; Create an instance of the embedding model, which can calculate an emebedding for a piece of text.
 (def embedding-model (AllMiniLmL6V2EmbeddingModel.))
 
-;; And we embbed all food description
+;; And we embbed all food descriptions:
 (run!
   #(let [segment (TextSegment/from %)
          embedding (.content (.embed embedding-model %))]
@@ -77,11 +77,11 @@
   (:food-description food-descriptions))
 
 
-;; Embed the query text  
+;; Now we embedd the query text:  
 (def query-embedding (.content (.embed embedding-model "Which spicy food can you offer  ?")))
 
-;; Find the 5 most relevant embedding which are sematically the closest to the query.
-;; Its using a certain vector distance (cosine) between the embedding vectors of query and texts)  
+;; And finally we find the 5 most relevant embedding which are sematically the closest to the query.
+;; It's using a certain vector distance (cosine) between the embedding vectors of query and texts.  
 (def relevant (.findRelevant embedding-store query-embedding 5))
 
 (tc/dataset

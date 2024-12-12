@@ -3,20 +3,19 @@
    [org.httpkit.client :as hk-client]
    [cheshire.core :as json]))
 
-;;  # using Large Language Models from Clojure
-;; LLMs often come as APIs, as they require computing power (GPUs), which most users do not have
-;; localy.
-;; OpenAI offers their models behind an (paid) API for example. In the following we will see three 
-;;diferent ways to use the GPT-4 model from OpenAI
+;;# using Large Language Models from Clojure
+;;LLMs often come as APIs, as they require computing power (GPUs), which most users do not have
+;;localy.
+;;OpenAI offers their models behind an (paid) API for example. In the following we will see three 
+;;different ways to use the GPT-4 model from OpenAI
 
-;; get the openai API key either from environemnt or a specific file
+;; Get the openai API key either from environemnt or a specific file
 (def open-ai-key
   (or (System/getenv "OPEN_AI_KEY")
       (slurp "open_ai_secret.txt")
       )
   )
 
-(or "hello" (slurp "aa"))
 
 ;## Use OpenAI API directly
 ;; OpenAI offers a rather simple API, text-in text-out for "chatting" with GPT 
@@ -42,9 +41,9 @@
  (json/decode keyword)) 
 
 ; ## use Bosquet
-; [bosquet](https://github.com/zmedelis/bosquet) abstracts some of the concepts of LLMs
+; [Bosquet](https://github.com/zmedelis/bosquet) abstracts some of the concepts of LLMs
 ; on a higher level API. Its has further notions of "memory" and "tools"
-; and has feature we find for exampl in python "LangChain"
+; and has other features we find for exampl in python "LangChain"
 
 ;; Bosque wants the API key in a config file
 (spit "secrets.edn"
@@ -54,6 +53,8 @@
 
 (require '[bosquet.llm.generator :refer [generate llm]])
 
+;; Call GPT from Bosquet
+
 (generate
  [[:user "What is Clojure"]
   [:assistant (llm :openai
@@ -61,12 +62,12 @@
                                       })]])
 
 
-;# use langchain4j
-;; We can use LLMs as well via a Java Interop and teh library
+;## Use langchain4j
+;; We can use LLMs as well via a Java Interop and the library
 ;; [lnagchain4j](https://github.com/langchain4j/langchain4j) which aims
-;; to be a copy of the pythin langcahin, and offers support or
-;; build blcoks for several consept arround LLMs (model, vecstorstores, document loaders)
-;; We see it used in te following chapters
+;; to be a copy of the python library langchain, and offers support or
+;; building blocks for several concepts arround LLMs (model, vectorstores, document loaders, etc.)
+;; We see it used in the following chapters
 
 (import '[dev.langchain4j.model.openai OpenAiChatModel OpenAiChatModelName])
 
