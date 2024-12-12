@@ -27,9 +27,33 @@ jobs:
       with:
         babashka-version: 1.4.192
 
+    - name: debug key
+      env:
+        OPEN_AI_KEY: ${{secrets.OPEN_AI_KEY}}
+      run: |
+        curl https://api.openai.com/v1/chat/completions \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bearer $OPEN_AI_KEY" \
+          -d '{
+            "model": "gpt-3.5-turbo",
+            "messages": [
+            {
+              "role": "system",
+              "content": "You are a helpful assistant."
+            },
+            {
+            "role": "user",
+            "content": "Hello!"
+            }
+            ]
+          }'
+      
 
     - name: render all tutorials
       run: bb render_all.clj
+      env:
+        OPEN_AI_KEY: ${{secrets.OPEN_AI_KEY}}
+
 
     - name: combine all tutorials
       run: bb make_docs.clj
