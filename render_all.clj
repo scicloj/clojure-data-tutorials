@@ -16,8 +16,9 @@
        (shell "echo" (format "::group::{%s}" workspace-folder))
        (shell "devcontainer"  "up" "--workspace-folder" 
               workspace-folder)
-       (apply shell "devcontainer"  "exec" "--workspace-folder" 
-              workspace-folder (str/split cmd #" "))
+       (apply shell "devcontainer"  "exec" 
+              "--remote-env" (str "OPEN_AI_KEY=" (System/getenv "OPEN_AI_KEY"))       
+              "--workspace-folder"  workspace-folder (str/split cmd #" "))
        (shell "echo" "::endgroup::"))))
 
  commands)

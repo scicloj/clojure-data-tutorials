@@ -16,6 +16,8 @@
       )
   )
 
+(or "hello" (slurp "aa"))
+
 ;## Use OpenAI API directly
 ;; OpenAI offers a rather simple API, text-in text-out for "chatting" with GPT 
 ;;
