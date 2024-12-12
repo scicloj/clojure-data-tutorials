@@ -66,6 +66,6 @@
   :title "Using LLMs from Clojure"
   :url "projects/ml/llm/index.html"
   :source-path "projects/ml/llm"
-  :cmd "clj render.c"
+  :cmd "clj notebooks/render.clj"
   :tags [:nlp :ml]}
  ]
