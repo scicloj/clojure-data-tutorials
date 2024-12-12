@@ -1,6 +1,11 @@
 {:remote-repo {:git-url "https://github.com/scicloj/clojure-data-tutorials"
                :branch "main"}
  :quarto {:title "Clojure Data Tutorials"
+          :format {:html
+                   {:grid
+                    {:sidebar-width "500px"
+                     :body-width "2500px"
+                     :margin-width "500px"}}}
           :include-in-header {:text "<meta property=\"og:image\" content=\"https://scicloj.github.io/sci-cloj-logo-transparent.png\"/>
 <meta property=\"og:title\" content=\"Clojure Data Tutorials\"/>
 <meta property=\"og:description\" content=\"A collection of community-contributed tutorials for the emerging Clojure data stack\"/>
