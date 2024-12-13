@@ -2,7 +2,7 @@
   (:require
    [org.httpkit.client :as hk-client]
    [cheshire.core :as json]))
-
+ 
 ;;# using Large Language Models from Clojure
 ;;LLMs often come as APIs, as they require computing power (GPUs), which most users do not have
 ;;localy.

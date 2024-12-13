@@ -48,7 +48,7 @@
 ;; ## Key Features
 ;; Configurable Chunking: Allows adjustment of chunk size and overlap.
 ;;
-;; Efficient Retrieval: Uses FAISS for fast similarity search.
+;; Simple Retrieval: Uses InMemoryVectorStore for JVM based similarity search.
 ;;
 ;; Usage Example
 ;; The code includes a test query: "What is the main cause of climate change?". 
@@ -74,7 +74,7 @@
 (defn replace-t-with-space [list-of-documents]
   (map
    (fn [text-segment]
-     (let [cleaned-text (-> text-segment .text (str/replace #"/t" " "))
+     (let [cleaned-text (-> text-segment .text (str/replace #"\t" " "))
            meta (-> text-segment .metadata)]
        (TextSegment/from cleaned-text meta)))
    list-of-documents))
