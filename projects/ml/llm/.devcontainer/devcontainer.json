@@ -17,7 +17,8 @@
 		"vscode": {
 			"extensions": [
 				"betterthantomorrow.calva",
-				"vscjava.vscode-java-pack"
+				"vscjava.vscode-java-pack",
+				"streetsidesoftware.code-spell-checker"
 			]
 		}
 	}

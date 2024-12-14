@@ -3,13 +3,13 @@
    [org.httpkit.client :as hk-client]
    [cheshire.core :as json]))
  
-;;# using Large Language Models from Clojure
+;;# Using Large Language Models from Clojure
 ;;LLMs often come as APIs, as they require computing power (GPUs), which most users do not have
-;;localy.
+;;locally.
 ;;OpenAI offers their models behind an (paid) API for example. In the following we will see three 
 ;;different ways to use the GPT-4 model from OpenAI
 
-;; Get the openai API key either from environemnt or a specific file
+;; Get the openai API key either from environment or a specific file
 (def open-ai-key
   (or (System/getenv "OPEN_AI_KEY")
       (slurp "open_ai_secret.txt")
@@ -20,7 +20,7 @@
 ;## Use OpenAI API directly
 ;; OpenAI offers a rather simple API, text-in text-out for "chatting" with GPT 
 ;;
-;; The following shows how to ask a simple question, and getting the answer using an http libray,
+;; The following shows how to ask a simple question, and getting the answer using an http library,
 ;; [http-kit](https://github.com/http-kit/http-kit). The API is based on JSON, so easy to use
 ;; from Clojure
 
@@ -43,7 +43,7 @@
 ; ## use Bosquet
 ; [Bosquet](https://github.com/zmedelis/bosquet) abstracts some of the concepts of LLMs
 ; on a higher level API. Its has further notions of "memory" and "tools"
-; and has other features we find for exampl in python "LangChain"
+; and has other features we find for example in python "LangChain"
 
 ;; Bosque wants the API key in a config file
 (spit "secrets.edn"
@@ -66,7 +66,7 @@
 ;; We can use LLMs as well via a Java Interop and the library
 ;; [lnagchain4j](https://github.com/langchain4j/langchain4j) which aims
 ;; to be a copy of the python library langchain, and offers support or
-;; building blocks for several concepts arround LLMs (model, vectorstores, document loaders, etc.)
+;; building blocks for several concepts around LLMs (model, vector stores, document loaders, etc.)
 ;; We see it used in the following chapters
 
 (import '[dev.langchain4j.model.openai OpenAiChatModel OpenAiChatModelName])

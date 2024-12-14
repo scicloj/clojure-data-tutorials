@@ -4,7 +4,8 @@
 (clay/make! {:format [:quarto :html]
              :show false
              :base-source-path "notebooks"
-             :source-path ["llms.clj"
+             :source-path ["index.clj"
+                           "llms.clj"
                            "vectorstore.clj"
                            "rag.clj"
                            ]

@@ -6,11 +6,12 @@
    [dev.langchain4j.model.embedding.onnx.allminilml6v2 AllMiniLmL6V2EmbeddingModel]
    [dev.langchain4j.store.embedding.inmemory InMemoryEmbeddingStore]))
 
-;; # Use a vectorstore from langchain4j
+;; # Use a vector store from langchain4j
 ;; In this example we will create embeddings for some
 ;; fantasy food items, and find the closest one to a query sentence.
 
-;; Firt wereate the data, so a list of 1000 food descriptions
+;; ## Create dummy data
+;; First we create the data, so a list of 1000 food descriptions
 
 
 (def food-items  
@@ -63,13 +64,14 @@
                 shuffle
                 (take 1000))}))  
 
+;; ## Add food description to vector store
 ;; Now we create the embedding store, which is able to calculate vector distances
 ;; (fast).
 (def embedding-store (InMemoryEmbeddingStore.))
-;; Create an instance of the embedding model, which can calculate an emebedding for a piece of text.
+;; Create an instance of the embedding model, which can calculate an embedding for a piece of text.
 (def embedding-model (AllMiniLmL6V2EmbeddingModel.))
 
-;; And we embbed all food descriptions:
+;; And we embed all food descriptions:
 (run!
   #(let [segment (TextSegment/from %)
          embedding (.content (.embed embedding-model %))]
@@ -77,10 +79,11 @@
   (:food-description food-descriptions))
 
 
-;; Now we embedd the query text:  
+;; Now we embed the query text:  
 (def query-embedding (.content (.embed embedding-model "Which spicy food can you offer  ?")))
 
-;; And finally we find the 5 most relevant embedding which are sematically the closest to the query.
+;; ## Query vector store
+;; And finally we find the 5 most relevant embedding which are semantically the closest to the query.
 ;; It's using a certain vector distance (cosine) between the embedding vectors of query and texts.  
 (def relevant (.findRelevant embedding-store query-embedding 5))
 

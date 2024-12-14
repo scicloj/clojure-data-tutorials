@@ -83,7 +83,7 @@
 ;; Convert PDF to text document:
 (def document (.parse (ApachePdfBoxDocumentParser.) (io/input-stream "Understanding_Climate_Change.pdf")))
 
-;; Split document into chunks of max 1000 chars and overlaping of 200:
+;; Split document into chunks of max 1000 chars and overlapping of 200:
 (def texts
   (.split 
    (DocumentSplitters/recursive 1000 200)
