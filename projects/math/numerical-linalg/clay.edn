@@ -1,3 +1,7 @@
 {:remote-repo {:git-url "https://github.com/scicloj/clojure-data-tutorials"
                :branch "main"}
- :base-target-path "temp"}
+ :base-target-path "temp"
+ :quarto {:format
+          {:html
+           {:theme
+            [:cosmo "notebooks/custom.scss"]}}}}
