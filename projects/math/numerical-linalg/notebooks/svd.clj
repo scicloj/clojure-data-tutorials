@@ -176,7 +176,6 @@ first-image
   (let [{:keys [min max]} (dstats/descriptive-statistics
                            t
                            #{:min :max})]
-    (prn [min max])
     (-> (dfn/- t min)
         (dfn// (- (double max) (double min))))))
 
