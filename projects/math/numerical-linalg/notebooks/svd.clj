@@ -110,16 +110,15 @@ first-image
 ;; Now let us collect the small tensors:
 
 (def small-tensors
-  (time
-   (into []
-         (map (comp image->small-tensor 
-                    clj-media.model/image))
-         (clj-media/frames
-          (clj-media/file video-path)
-          :video
-          {:format (clj-media/video-format
-                    {:pixel-format
-                     :pixel-format/rgba})}))))
+  (into []
+        (map (comp image->small-tensor 
+                   clj-media.model/image))
+        (clj-media/frames
+         (clj-media/file video-path)
+         :video
+         {:format (clj-media/video-format
+                   {:pixel-format
+                    :pixel-format/rgba})})))
 
 (count small-tensors)
 
