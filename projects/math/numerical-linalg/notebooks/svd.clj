@@ -227,3 +227,13 @@ first-image
 (matrix->first-frame residual)
 
 ;; We see these are the people.
+
+
+;; ## Summary:
+
+;; Let us summarize the decomposition:
+
+(->> [matrix
+      component0
+      residual]
+     (mapv matrix->first-frame))
