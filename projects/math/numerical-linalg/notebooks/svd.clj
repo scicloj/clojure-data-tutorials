@@ -201,7 +201,7 @@ first-image
 ;; Let us take its first column, which is the first
 ;; frame, and show it as an image:
 
-(defn matrix->first-frame [m]
+(defn matrix->first-image [m]
   (-> m
       (.getColumn 0)
       dtype/->array-buffer
@@ -211,7 +211,17 @@ first-image
       (tensor/reshape [120 160])
       bufimg/tensor->image))
 
-(matrix->first-frame component0)
+(defn matrix->first-image [m]
+  (-> m
+      (.getColumn 0)
+      dtype/->array-buffer
+      tensor-normalize
+      (dfn/* 255)
+      (dtype/->int-array)
+      (tensor/reshape [120 160])
+      bufimg/tensor->image))
+
+(matrix->first-image component0)
 
 ;; We see it is the background image of the video.
 
@@ -223,16 +233,81 @@ first-image
   (mat/sub matrix
            component0))
 
-(matrix->first-frame residual)
+(matrix->first-image residual)
 
 ;; We see these are the people.
 
 
-;; ## Summary:
+;; ## Visualizing the decomposition wit the first image:
 
 ;; Let us summarize the decomposition:
 
 (->> [matrix
       component0
       residual]
-     (mapv matrix->first-frame))
+     (mapv matrix->first-image))
+
+;; ## Generating decomposed videos 
+
+(defn matrix->images [m]
+  (-> m
+      mat/mat->array
+      dtype/->array-buffer
+      tensor-normalize
+      (dfn/* 255)
+      dtype/->int-array
+      (tensor/reshape [120 160 350])
+      (tensor/transpose [2 0 1])
+      (->> (mapv bufimg/tensor->image))))
+
+(->> residual
+     matrix->images
+     (take 20))
+
+(def frame-format
+  (clj-media/video-format {:pixel-format :pixel-format/gray8
+                           :time-base 7
+                           :line-size 160
+                           :width 160
+                           :height 120}))
+
+(defn img->frame [img pts time-base]
+  (clj-media/make-frame
+   {:bytes (-> img
+               (.getData)
+               (.getDataBuffer)
+               (.getData))
+    :format frame-format
+    :time-base time-base
+    :pts pts}))
+
+(def generated-frames
+  (let [frame-rate 7
+        seconds 50
+        num-frames (* seconds frame-rate)]
+    (into []
+          (map-indexed (fn [pts image]
+                         (img->frame image pts frame-rate)))
+          (matrix->images residual))))
+
+(def target-path
+  "notebooks/generated-movie.mp4")
+
+(clj-media/write!
+ (clj-media/make-media frame-format generated-frames)
+ target-path)
+
+(kind/video
+ {:src target-path})
+
+
+
+
+
+
+
+
+
+
+
+
