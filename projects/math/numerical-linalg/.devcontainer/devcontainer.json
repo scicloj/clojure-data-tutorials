@@ -13,13 +13,15 @@
 	"containerUser": "${localEnv:USER}",
 	"features": {
 		"ghcr.io/devcontainers/features/git:1": {},
-		"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}
+		"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {},
+        "ghcr.io/devcontainers-contrib/features/bash-command:1":
+            {"command": "apt-get update && apt-get install -y rlwrap && apt-get install -y libxtst-dev ffmpeg"}
 	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"betterthantomorrow.calva"
-			]
-		}
+    "customizations": {
+	"vscode": {
+	    "extensions": [
+		"betterthantomorrow.calva"
+	    ]
 	}
+    }
 }
