@@ -54,15 +54,16 @@
 ;; frame and convert it to an image:
 
 (def first-image
-  (reduce (fn [_ frame] (clj-media.model/image
-                         frame))
-          (take 1)
-          (clj-media/frames
-           (clj-media/file video-path)
-           :video
-           {:format (clj-media/video-format
-                     {:pixel-format
-                      :pixel-format/rgba})})))
+  (first
+   (into []
+         (comp (take 1)
+               (map clj-media.model/image))
+         (clj-media/frames
+          (clj-media/file video-path)
+          :video
+          {:format (clj-media/video-format
+                    {:pixel-format
+                     :pixel-format/rgba})}))))
 
 first-image
 
