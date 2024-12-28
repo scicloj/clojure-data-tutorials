@@ -108,11 +108,15 @@ first-image
     bufimg/tensor->image)
 
 ;; Now let us collect the small tensors.
+;; We will take just 70 frames of the video,
+;; simply because it is enough for demonstrating
+;; the methods of this tutorial.
 
 (def small-tensors
   (into []
-        (map (comp image->small-tensor 
-                   clj-media.model/image))
+        (comp (take 70)
+              (map (comp image->small-tensor 
+                         clj-media.model/image)))
         (clj-media/frames
          (clj-media/file video-path)
          :video
@@ -258,7 +262,7 @@ first-image
       tensor-normalize
       (dfn/* 255)
       dtype/->int-array
-      (tensor/reshape [120 160 350])
+      (tensor/reshape [120 160 70])
       (tensor/transpose [2 0 1])
       (->> (mapv bufimg/tensor->image))))
 
@@ -285,7 +289,7 @@ first-image
 
 (def generated-frames
   (let [frame-rate 7
-        seconds 50
+        seconds 10
         num-frames (* seconds frame-rate)]
     (into []
           (map-indexed (fn [pts image]
