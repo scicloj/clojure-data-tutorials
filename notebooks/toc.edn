@@ -75,4 +75,4 @@
   :url "projects/math/numerical-linalg/index.html"
   :source-path "projects/math/numerical-linalg"
   :cmd "clj notebooks/render.clj"
-  :tags [:math :linear-algebra :fastai]}]
+  :tags [:math :linear-algebra :fastai :draft]}]
