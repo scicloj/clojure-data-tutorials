@@ -56,7 +56,7 @@
 (def first-image
   (reduce (fn [_ frame] (clj-media.model/image
                          frame))
-          nil
+          (take 1)
           (clj-media/frames
            (clj-media/file video-path)
            :video
