@@ -32,19 +32,8 @@
 (def video-path
   "notebooks/movie/Video_003.mp4")
 
-;; A conveneince function for displaying a video
-;; in Quarto (till we handle this better in
-;; an upcoming Clay release):
-(defn video [path]
-  (kind/md
-   (str "{{"
-        \<
-        " video "
-        path
-        \>
-        "}}")))
-
-(video video-path)
+(kind/video
+ {:src video-path})
 
 ;; Let us explore it with clj-media:
 
@@ -118,7 +107,7 @@ first-image
     image->small-tensor
     bufimg/tensor->image)
 
-;; Now let us collect the small tensors:
+;; Now let us collect the small tensors.
 
 (def small-tensors
   (into []
@@ -310,4 +299,5 @@ first-image
  (clj-media/make-media frame-format generated-frames)
  target-path)
 
-(video target-path)
+(kind/video
+ :src target-path)
