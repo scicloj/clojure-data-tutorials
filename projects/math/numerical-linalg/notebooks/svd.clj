@@ -86,7 +86,7 @@ first-image
 ;; the images to a lower resolution, and
 ;; turn them to gray-scale.
 
-;; See [Luma](https://en.wikipedia.org/wiki/Luma_(video)
+;; See [Luma](https://en.wikipedia.org/wiki/Luma_(video))
 ;; for discussion of the gray-scale formula:
 ;; 0.299 ∙ Red + 0.587 ∙ Green + 0.114 ∙ Blue
 
