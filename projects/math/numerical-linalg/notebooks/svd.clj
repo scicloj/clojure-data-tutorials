@@ -32,7 +32,7 @@
 (def video-path
   "notebooks/movie/Video_003.mp4")
 
-;; A conveneince function for displaying a video
+;; A convenience function for displaying a video
 ;; in Quarto (till we handle this better in
 ;; an upcoming Clay release):
 (defn video [path]
@@ -98,7 +98,7 @@ first-image
 ;; turn them to gray-scale.
 
 ;; See [Luma](https://en.wikipedia.org/wiki/Luma_(video)
-;; for discussion of the gray-scale forumla:
+;; for discussion of the gray-scale formula:
 ;; 0.299 ∙ Red + 0.587 ∙ Green + 0.114 ∙ Blue
 
 (defn image->small-tensor [image]
@@ -251,7 +251,7 @@ first-image
 ;; We see these are the people.
 
 
-;; ## Visualizing the decomposition wit the first image:
+;; ## Visualizing the decomposition with the first image:
 
 ;; Let us summarize the decomposition:
 
