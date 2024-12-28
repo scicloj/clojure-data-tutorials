@@ -300,4 +300,4 @@ first-image
  target-path)
 
 (kind/video
- :src target-path)
+ {:src target-path})
