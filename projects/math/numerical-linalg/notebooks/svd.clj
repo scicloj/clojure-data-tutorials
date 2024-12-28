@@ -32,8 +32,19 @@
 (def video-path
   "notebooks/movie/Video_003.mp4")
 
-(kind/video
- {:src video-path})
+;; A conveneince function for displaying a video
+;; in Quarto (till we handle this better in
+;; an upcoming Clay release):
+(defn video [path]
+  (kind/md
+   (str "{{"
+        \<
+        " video "
+        path
+        \>
+        "}}")))
+
+(video video-path)
 
 ;; Let us explore it with clj-media:
 
@@ -299,17 +310,4 @@ first-image
  (clj-media/make-media frame-format generated-frames)
  target-path)
 
-(kind/video
- {:src target-path})
-
-
-
-
-
-
-
-
-
-
-
-
+(video target-path)
