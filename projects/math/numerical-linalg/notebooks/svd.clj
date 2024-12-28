@@ -138,10 +138,13 @@ first-image
                            ((flat-tensors i) j))
                          :uint8))
 
-;; For visual conveniene, we will display it transposed:
-(-> long-tensor
-    (tensor/transpose [1 0])
-    bufimg/tensor->image)
+(kind/hiccup
+ [:div
+  [:h3 "It is interesting to scroll this! 👇"]
+  [:div {:style {:max-height "400px"
+                 :overflow :auto}}
+   (bufimg/tensor->image
+    long-tensor)]])
 
 ;; ## Singular value decomposition
 
