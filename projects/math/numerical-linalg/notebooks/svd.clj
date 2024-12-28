@@ -32,8 +32,19 @@
 (def video-path
   "notebooks/movie/Video_003.mp4")
 
-(kind/video
- {:src video-path})
+;; A conveneince function for displaying a video
+;; in Quarto (till we handle this better in
+;; an upcoming Clay release):
+(defn video [path]
+  (kind/md
+   (str "{{"
+        \<
+        " video "
+        path
+        \>
+        "}}")))
+
+(video video-path)
 
 ;; Let us explore it with clj-media:
 
@@ -138,10 +149,13 @@ first-image
                            ((flat-tensors i) j))
                          :uint8))
 
-;; For visual conveniene, we will display it transposed:
-(-> long-tensor
-    (tensor/transpose [1 0])
-    bufimg/tensor->image)
+(kind/hiccup
+ [:div
+  [:h3 "It is interesting to scroll this! 👇"]
+  [:div {:style {:max-height "400px"
+                 :overflow :auto}}
+   (bufimg/tensor->image
+    long-tensor)]])
 
 ;; ## Singular value decomposition
 
@@ -296,17 +310,4 @@ first-image
  (clj-media/make-media frame-format generated-frames)
  target-path)
 
-(kind/video
- {:src target-path})
-
-
-
-
-
-
-
-
-
-
-
-
+(video target-path)
