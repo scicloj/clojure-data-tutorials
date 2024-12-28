@@ -54,15 +54,16 @@
 ;; frame and convert it to an image:
 
 (def first-image
-  (reduce (fn [_ frame] (clj-media.model/image
-                         frame))
-          nil
-          (clj-media/frames
-           (clj-media/file video-path)
-           :video
-           {:format (clj-media/video-format
-                     {:pixel-format
-                      :pixel-format/rgba})})))
+  (first
+   (into []
+         (comp (take 1)
+               (map clj-media.model/image))
+         (clj-media/frames
+          (clj-media/file video-path)
+          :video
+          {:format (clj-media/video-format
+                    {:pixel-format
+                     :pixel-format/rgba})}))))
 
 first-image
 
@@ -86,7 +87,7 @@ first-image
 ;; the images to a lower resolution, and
 ;; turn them to gray-scale.
 
-;; See [Luma](https://en.wikipedia.org/wiki/Luma_(video)
+;; See [Luma](https://en.wikipedia.org/wiki/Luma_(video))
 ;; for discussion of the gray-scale formula:
 ;; 0.299 ∙ Red + 0.587 ∙ Green + 0.114 ∙ Blue
 
