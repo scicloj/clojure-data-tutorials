@@ -32,7 +32,6 @@
                          (override-dimension! "sequence_length" 1)
                          (override-dimension! "past_sequence_length" 1)
                          (override-dimension! "past_sequence_length + 1" 1))
-                 src-tz (tensor fact [1 1 28 28] :float :nchw)
                  onnx-bp (onnx fact "/tmp/models/HuggingFaceTB/SmolLM-135M/onnx/model.onnx" {:options opt})
                  input-ids (tensor neand-fact [1 1] :long :nc)
                  position-ids (tensor neand-fact [1 1] :long :nc)
