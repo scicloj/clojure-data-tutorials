@@ -1,0 +1,5 @@
+{
+ ; the devcontainer setup build and puts the jar and native libs in the below places
+ :deps { onnxruntime/genai {:local/root "/tmp/onnxruntime-genai-0.11.2.jar"}}
+ :aliases {:linux {:jvm-opts ["-Donnxruntime-genai.native.path=/tmp/onnxruntime-genai.native"]}}
+ }

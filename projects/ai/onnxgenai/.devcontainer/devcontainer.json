@@ -1,0 +1,47 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/scicloj/devcontainer-templates/tree/main/src/basecloj
+{
+	"name": "onnx-genai tutorial",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"BASE_IMAGE": "temurin-21-tools-deps-noble",
+			"USERNAME": "${localEnv:USER:vscode}"
+		}
+	},
+
+	"runArgs": 
+            [ 
+                //"--device", "nvidia.com/gpu=all"   // working on nixos
+                "--runtime=nvidia", "--gpus", "all" //working in codevm
+                ],
+
+	"remoteUser": "${localEnv:USER}",
+	"containerUser": "${localEnv:USER}",
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {
+			"ppa": true,
+			"version": "os-provided"
+		},
+		"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/nvidia-cuda:2": {
+			"installCudnn": true,
+			"cudaVersion": "12.9",
+			"installToolkit": true,
+			"cudnnVersion": "automatic"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"betterthantomorrow.calva"
+			]
+		}
+	},
+	 "onCreateCommand": "sudo .devcontainer/buildGenAi.sh",
+	 "postCreateCommand": ".devcontainer/loadModels.sh"
+	
+ 
+}
