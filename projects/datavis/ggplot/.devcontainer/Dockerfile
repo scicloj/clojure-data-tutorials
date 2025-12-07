@@ -28,7 +28,6 @@ clojure -Ttools install io.github.seancorfield/clj-new '{:git/tag "v1.2.404" :gi
 clojure -Ttools install-latest :lib io.github.seancorfield/deps-new :as new && \
 clojure -Ttools list
 
-RUN apt-get update && apt-get install -y lsb-release  r-base
+RUN apt-get update && apt-get install -y lsb-release  r-base r-cran-ggplot2
 RUN Rscript -e 'install.packages("Rserve",,"http://rforge.net")'    
-RUN Rscript -e 'install.packages(c("ggplot2"))'    
 

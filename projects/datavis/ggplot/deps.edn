@@ -5,4 +5,6 @@
         juji/editscript {:mvn/version "0.6.3"}
         net.clojars.scicloj/ggclj {:git/url "https://github.com/kiramclean/ggclj/"
                                    :sha "87e62c8fa350cd8f97f7071bea7d1fb740d634df"}}
- :paths ["notebooks"]}
+ :paths ["notebooks"]
+ :aliases {:dev {:jvm-opts ["-Djava.awt.headless=true"]}}
+ }
